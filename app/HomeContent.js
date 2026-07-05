@@ -107,13 +107,14 @@ export default function HomeContent() {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
+            speed: 1500,
             autoplay: {
-              delay: 3000,
+              delay: 1500,
               disableOnInteraction: false,
             },
-            breakpoints: {
-              768: { slidesPerView: 1 },
-              992: { slidesPerView: 2 },
+            pagination: {
+              el: ".dot-2",
+              clickable: true,
             },
           });
 
