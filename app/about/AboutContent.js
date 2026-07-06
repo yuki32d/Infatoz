@@ -253,7 +253,7 @@ export default function AboutContent() {
                   </div>
                   <div>
                     <h4>Problem Solving</h4>
-                    <p>Aliquam erat volutpat Nullam imperdiet</p>
+                    <p>Providing creative solutions to complex business problems.</p>
                   </div>
                 </div>
                 <div className="ab-icon-item">
@@ -262,7 +262,7 @@ export default function AboutContent() {
                   </div>
                   <div>
                     <h4>Mission &amp; Vision</h4>
-                    <p>Aliquam erat volutpat Nullam imperdiet</p>
+                    <p>Committed to driving global success through technology.</p>
                   </div>
                 </div>
               </div>

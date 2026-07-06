@@ -38,8 +38,7 @@ export default function Header() {
                         </div>
                     </div>
                     <p className="text d-none d-lg-block">
-                        Nullam dignissim, ante scelerisque the is euismod fermentum odio sem semper the is erat, a
-                        feugiat leo urna eget eros. Duis Aenean a imperdiet risus. </p>
+                        We provide innovative IT solutions and services to help businesses accelerate their digital transformation and achieve sustainable growth. </p>
                     <div className="mobile-menu fix mb-3"></div>
                     <div className="offcanvas__contact">
                         <h4>Contact Info</h4>

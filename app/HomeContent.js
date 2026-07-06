@@ -246,10 +246,8 @@ export default function HomeContent() {
                                                 </div>
                                                 <h1 className="wow fadeInUp" data-wow-delay=".4s">
                                                     Excellent It Services for Your Success </h1>
-                                                <p className="wow fadeInUp" data-wow-delay=".6s">
-                                                    Consectetur adipiscing elit aenean scelerisque at augue vitae
-                                                    consequat <br /> quisque eget congue velit in cursus leo sed sodales
-                                                    est eget turpis. </p>
+                                                 <p className="wow fadeInUp" data-wow-delay=".6s">
+                                                     We provide specialized IT solutions and consulting services to help your business <br /> streamline operations, enhance security, and drive digital innovation. </p>
                                                 <div className="hero-button">
                                                     <a href="/contact" className="theme-btn wow fadeInUp"
                                                         data-wow-delay=".8s">
@@ -448,7 +446,7 @@ export default function HomeContent() {
                                                 <div className="content">
                                                     <h4>Problem Solving</h4>
                                                     <p>
-                                                        Aliquam erat volutpat Nullam imperdiet </p>
+                                                        Providing creative solutions to complex business problems. </p>
                                                 </div>
                                             </div>
 
@@ -461,7 +459,7 @@ export default function HomeContent() {
                                                 <div className="content">
                                                     <h4>Mission &amp; Vision</h4>
                                                     <p>
-                                                        Aliquam erat volutpat Nullam imperdiet </p>
+                                                        Committed to driving global success through technology. </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -650,7 +648,7 @@ export default function HomeContent() {
                                                                     Security</a>
                                                             </h4>
                                                             <p>
-                                                                Mauris ultrices ligula eget volutpat aliquet nullam </p>
+                                                                Protecting systems and databases against modern security threats. </p>
                                                             <a href="#"
                                                                 className="theme-btn-2 mt-3">
                                                                 Read More <i className="fa-solid fa-arrow-right-long"></i>
@@ -689,7 +687,7 @@ export default function HomeContent() {
                                                                     Consultancy</a>
                                                             </h4>
                                                             <p>
-                                                                Mauris ultrices ligula eget volutpat aliquet nullam </p>
+                                                                Guiding digital strategies and workflow optimizations. </p>
                                                             <a href="#"
                                                                 className="theme-btn-2 mt-3">
                                                                 Read More <i className="fa-solid fa-arrow-right-long"></i>
@@ -728,7 +726,7 @@ export default function HomeContent() {
                                                                     Security</a>
                                                             </h4>
                                                             <p>
-                                                                Mauris ultrices ligula eget volutpat aliquet nullam </p>
+                                                                Implementing robust defenses to safeguard critical infrastructure. </p>
                                                             <a href="#"
                                                                 className="theme-btn-2 mt-3">
                                                                 Read More <i className="fa-solid fa-arrow-right-long"></i>
@@ -767,7 +765,7 @@ export default function HomeContent() {
                                                                     Development</a>
                                                             </h4>
                                                             <p>
-                                                                Mauris ultrices ligula eget volutpat aliquet nullam </p>
+                                                                Building responsive and high-performance native applications. </p>
                                                             <a href="#"
                                                                 className="theme-btn-2 mt-3">
                                                                 Read More <i className="fa-solid fa-arrow-right-long"></i>
@@ -1118,11 +1116,7 @@ export default function HomeContent() {
                                                         </div>
                                                         <div className="testimonial-content">
                                                             <p className="mt-3 mt-md-0">
-                                                                Nullam dignissim, ante scelerisque the is euismod
-                                                                fermentum odio sem semper the is erat, a feugiat leo
-                                                                urna eget eros. Duis Aenean a imperdiet risus. Aliquam
-                                                                pellentesque nisi dui eget dapibus enim ornare eu. Morbi
-                                                                nunc metus, maximus eu mauris. </p>
+                                                                "Infatoz completely transformed our workflow. Their team delivered a robust, secure web application that helped us increase our client engagement by 40%. Their technical expertise is truly top-notch!" </p>
                                                             <div className="author-details">
                                                                 <h5>Kathryn Murphy</h5>
                                                                 <span>Web Designer</span>
@@ -1145,11 +1139,7 @@ export default function HomeContent() {
                                                         </div>
                                                         <div className="testimonial-content">
                                                             <p className="mt-3 mt-md-0">
-                                                                Nullam dignissim, ante scelerisque the is euismod
-                                                                fermentum odio sem semper the is erat, a feugiat leo
-                                                                urna eget eros. Duis Aenean a imperdiet risus. Aliquam
-                                                                pellentesque nisi dui eget dapibus enim ornare eu. Morbi
-                                                                nunc metus, maximus eu mauris. </p>
+                                                                "The cybersecurity solutions implemented by Infatoz have given us complete peace of mind. Their professionalism, constant communication, and attention to detail made the entire collaboration seamless." </p>
                                                             <div className="author-details">
                                                                 <h5>Henri Mack</h5>
                                                                 <span>Web Designer</span>
@@ -1172,11 +1162,7 @@ export default function HomeContent() {
                                                         </div>
                                                         <div className="testimonial-content">
                                                             <p className="mt-3 mt-md-0">
-                                                                Nullam dignissim, ante scelerisque the is euismod
-                                                                fermentum odio sem semper the is erat, a feugiat leo
-                                                                urna eget eros. Duis Aenean a imperdiet risus. Aliquam
-                                                                pellentesque nisi dui eget dapibus enim ornare eu. Morbi
-                                                                nunc metus, maximus eu mauris. </p>
+                                                                "From architecture design to mobile app development, Infatoz proved to be an outstanding IT partner. They delivered our project on time and with excellent code quality. Highly recommended!" </p>
                                                             <div className="author-details">
                                                                 <h5>Joseph Bert</h5>
                                                                 <span>Web Designer</span>
@@ -1249,7 +1235,7 @@ export default function HomeContent() {
                                                 <h4><a href="#">Cameron Williamson</a></h4>
                                             </div>
                                             <p>
-                                                Integer at sapien nec sapien <br /> sollicitudin ultrices in ut nisl. </p>
+                                                Facilitating agile workflows and team alignment for successful delivery. </p>
                                             <div className="social-profile">
                                                 <ul>
                                                     <li><a href="#"><i className="fa fa-facebook-f"></i></a></li>
@@ -1268,7 +1254,7 @@ export default function HomeContent() {
                                                 <h4><a href="#">Leslie Alexander</a></h4>
                                             </div>
                                             <p>
-                                                Integer at sapien nec sapien <br /> sollicitudin ultrices in ut nisl. </p>
+                                                Designing scalable architectures and writing clean, robust backend code. </p>
                                             <div className="social-profile">
                                                 <ul>
                                                     <li><a href="#"><i className="fa fa-facebook-f"></i></a></li>
@@ -1287,7 +1273,7 @@ export default function HomeContent() {
                                                 <h4><a href="#">Ronald Richards</a></h4>
                                             </div>
                                             <p>
-                                                Integer at sapien nec sapien <br /> sollicitudin ultrices in ut nisl. </p>
+                                                Creating intuitive, user-centered interfaces and visual design systems. </p>
                                             <div className="social-profile">
                                                 <ul>
                                                     <li><a href="#"><i className="fa fa-facebook-f"></i></a></li>
@@ -1306,7 +1292,7 @@ export default function HomeContent() {
                                                 <h4><a href="#">Darrell Steward</a></h4>
                                             </div>
                                             <p>
-                                                Integer at sapien nec sapien <br /> sollicitudin ultrices in ut nisl. </p>
+                                                Developing pixel-perfect, responsive frontend layouts and templates. </p>
                                             <div className="social-profile">
                                                 <ul>
                                                     <li><a href="#"><i className="fa fa-facebook-f"></i></a></li>
@@ -1375,8 +1361,7 @@ export default function HomeContent() {
                                                                 <h2>$149</h2>
                                                                 <span>Per month</span>
                                                                 <p>
-                                                                    Lnteger sapien nec sapien sollicitudin ultrices Cras
-                                                                    tempor id lorem et </p>
+                                                                    Affordable plan covering core design, security, and digital marketing features. </p>
                                                             </div>
                                                             <ul className="pricing-list">
                                                                 <li>
@@ -1420,8 +1405,7 @@ export default function HomeContent() {
                                                                 <h2>$179</h2>
                                                                 <span>Per month</span>
                                                                 <p>
-                                                                    Lnteger sapien nec sapien sollicitudin ultrices Cras
-                                                                    tempor id lorem et </p>
+                                                                    Complete features including priority support, hosting, and unlimited downloads. </p>
                                                             </div>
                                                             <ul className="pricing-list">
                                                                 <li>
@@ -1465,8 +1449,7 @@ export default function HomeContent() {
                                                                 <h2>$199</h2>
                                                                 <span>Per month</span>
                                                                 <p>
-                                                                    Lnteger sapien nec sapien sollicitudin ultrices Cras
-                                                                    tempor id lorem et </p>
+                                                                    Ultimate enterprise solution with custom hosting, 24/7 monitoring, and support. </p>
                                                             </div>
                                                             <ul className="pricing-list">
                                                                 <li>
@@ -1514,8 +1497,7 @@ export default function HomeContent() {
                                                                 <h2>$249</h2>
                                                                 <span>Per year</span>
                                                                 <p>
-                                                                    Lnteger sapien nec sapien sollicitudin ultrices Cras
-                                                                    tempor id lorem et </p>
+                                                                    Affordable yearly plan covering core design, security, and digital marketing. </p>
                                                             </div>
                                                             <ul className="pricing-list">
                                                                 <li>
@@ -1559,8 +1541,7 @@ export default function HomeContent() {
                                                                 <h2>$279</h2>
                                                                 <span>Per year</span>
                                                                 <p>
-                                                                    Lnteger sapien nec sapien sollicitudin ultrices Cras
-                                                                    tempor id lorem et </p>
+                                                                    Complete yearly plan including priority support, hosting, and unlimited downloads. </p>
                                                             </div>
                                                             <ul className="pricing-list">
                                                                 <li>
@@ -1604,8 +1585,7 @@ export default function HomeContent() {
                                                                 <h2>$399</h2>
                                                                 <span>Per year</span>
                                                                 <p>
-                                                                    Lnteger sapien nec sapien sollicitudin ultrices Cras
-                                                                    tempor id lorem et </p>
+                                                                    Ultimate yearly enterprise solution with custom hosting, 24/7 monitoring, and support. </p>
                                                             </div>
                                                             <ul className="pricing-list">
                                                                 <li>
@@ -1839,9 +1819,7 @@ export default function HomeContent() {
                                                             Disapproved Of Latest Work</a>
                                                     </h3>
                                                     <p>
-                                                        Supervisor Disapproved Of Latest WorkConsectetur adipisicing
-                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                                        of&hellip; </p>
+                                                        We analyze recent management trends and how alignment issues between teams and supervisors can impact technical project timelines.&hellip; </p>
                                                     <a href="#"
                                                         className="theme-btn-2 mt-3">
                                                         Read More
@@ -1865,9 +1843,7 @@ export default function HomeContent() {
                                                             Potential Through Technology</a>
                                                     </h3>
                                                     <p>
-                                                        Unlocking Potential Through TechnologyConsectetur adipisicing
-                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore of
-                                                        magna&hellip; </p>
+                                                        Discover how emerging cloud native platforms and automation tools can help your engineering teams scale and reduce time-to-market.&hellip; </p>
                                                     <a href="#"
                                                         className="theme-btn-2 mt-3">
                                                         Read More
@@ -1891,9 +1867,7 @@ export default function HomeContent() {
                                                             Streamline Succeed IT Solutions</a>
                                                     </h3>
                                                     <p>
-                                                        Simplify Streamline Succeed IT SolutionsConsectetur adipisicing
-                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                                        of&hellip; </p>
+                                                        A comprehensive guide on simplifying enterprise IT infrastructure, streamlining operations, and achieving digital success.&hellip; </p>
                                                     <a href="#"
                                                         className="theme-btn-2 mt-3">
                                                         Read More

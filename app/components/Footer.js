@@ -25,8 +25,7 @@ export default function Footer() {
                                 </div>
                                 <div className="footer-content">
                                     <p>
-                                        Phasellus ultricies aliquam volutpat ullamcorper laoreet neque, a lacinia
-                                        curabitur lacinia mollis </p>
+                                        We design, develop, and deliver high-quality IT solutions that empower businesses to scale and lead in their industries. </p>
                                     <div className="social-icon d-flex align-items-center">
                                         <a href=""><i className="fa fa-facebook-f"></i></a><a href="#"><i
                                                 className="fab fa-twitter"></i></a><a href="#"><i
