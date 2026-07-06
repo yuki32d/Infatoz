@@ -95,6 +95,10 @@ export default function HomeContent() {
               delay: 3000,
               disableOnInteraction: false,
             },
+            pagination: {
+              el: ".dot-3",
+              clickable: true,
+            },
             breakpoints: {
               576: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
