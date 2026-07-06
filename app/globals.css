@@ -47,3 +47,28 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Consultations button matching design */
+.consult-btn {
+  background: linear-gradient(to right, #bce7ff 0%, #8cd6ff 100%) !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+  padding: 12px 36px !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  font-family: 'Kumbh Sans', sans-serif !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.consult-btn:hover {
+  background: linear-gradient(to right, #8cd6ff 0%, #bce7ff 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(140, 214, 255, 0.4) !important;
+}

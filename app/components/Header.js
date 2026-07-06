@@ -146,22 +146,11 @@ export default function Header() {
                                     </div>
                                 </div>
 
-                                <a href="#0" className="search-trigger search-icon"><i className="fal fa-search"></i></a>
-
-                                <div className="header-button">
-                                    <a href="/contact" className="theme-btn">
-                                        <span>
-                                            Get A Quote <i className="fa-solid fa-arrow-right-long"></i>
-                                        </span>
-                                    </a>
-                                </div>
-
-
-                                <div className="header__hamburger d-xl-block my-auto">
-                                    <div className="sidebar__toggle">
-                                        <i className="fas fa-bars"></i>
-                                    </div>
-                                </div>
+                                 <div className="header-button" style={{ marginLeft: '20px' }}>
+                                     <Link href="/contact" className="consult-btn">
+                                         Consultations
+                                     </Link>
+                                 </div>
                             </div>
                         </div>
                     </div>
