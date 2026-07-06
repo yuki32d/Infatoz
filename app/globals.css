@@ -72,3 +72,14 @@ a {
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 20px rgba(140, 214, 255, 0.4) !important;
 }
+
+.consult-btn-wrapper {
+  display: flex !important;
+  align-items: center !important;
+}
+
+@media (max-width: 575px) {
+  .consult-btn-wrapper {
+    display: none !important;
+  }
+}

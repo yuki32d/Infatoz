@@ -146,7 +146,7 @@ export default function Header() {
                                     </div>
                                 </div>
 
-                                 <div className="header-button" style={{ marginLeft: '20px' }}>
+                                 <div className="consult-btn-wrapper" style={{ marginLeft: '20px' }}>
                                      <Link href="/contact" className="consult-btn">
                                          Consultations
                                      </Link>
