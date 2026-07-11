@@ -1321,301 +1321,138 @@ export default function HomeContent() {
                         data-widget_type="infatoz-pricing-widget.default">
                         <div className="elementor-widget-container">
 
-
-                            
-                            <section className="pricing-section fix">
+                            <section className="why-infatoz-section">
                                 <div className="container">
-                                    <div className="pricing-wrapper">
-                                        <div className="section-title-area">
+                                    <div className="why-infatoz-wrapper">
+                                        <div className="section-title-area text-center mb-5">
                                             <div className="section-title">
-                                                <span className="wow fadeInUp">FLEXIBLE PRICING PLAN</span>
-                                                <h2 className="wow fadeInUp" data-wow-delay=".3s">
-                                                    We’ve Offered the best <br /> pricing for you </h2>
+                                                <span className="wow fadeInUp" style={{ color: "#384BFF", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase", fontSize: "14px", display: "block", marginBottom: "10px" }}>THE DIFFERENCE</span>
+                                                <h2 className="wow fadeInUp" data-wow-delay=".3s" style={{ fontSize: "42px", fontWeight: "700", color: "#0f0d1d", marginBottom: "15px", fontFamily: "'Kumbh Sans', sans-serif" }}>
+                                                    Why Infatoz Technologies?
+                                                </h2>
+                                                <p className="wow fadeInUp" data-wow-delay=".5s" style={{ color: "#585858", fontSize: "16px", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
+                                                    Our result-oriented, transparent model compared directly to traditional IT agencies and outsourcing models.
+                                                </p>
                                             </div>
-                                            <ul className="nav" role="tablist">
-                                                <li className="nav-item wow fadeInUp" data-wow-delay=".3s"
-                                                    role="presentation">
-                                                    <a href="#monthly" data-bs-toggle="tab" className="nav-link active"
-                                                        aria-selected="true" role="tab">
-                                                        Monthly </a>
-                                                </li>
-                                                <li className="nav-item wow fadeInUp" data-wow-delay=".5s"
-                                                    role="presentation">
-                                                    <a href="#yearly" data-bs-toggle="tab" className="nav-link"
-                                                        aria-selected="false" role="tab" tabIndex="-1">
-                                                        Yearly </a>
-                                                </li>
-                                            </ul>
                                         </div>
-                                        <div className="tab-content">
-                                            <div id="monthly" className="tab-pane fade show active" role="tabpanel">
-                                                <div className="row">
 
-                                                    <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                                                        data-wow-delay=".5s">
-                                                        <div className="pricing-items ">
-                                                            <div className="tag">
-                                                                <h6>Basic Plan</h6>
-                                                            </div>
-                                                            <div className="pricing-header">
-                                                                <h2>$149</h2>
-                                                                <span>Per month</span>
-                                                                <p>
-                                                                    Affordable plan covering core design, security, and digital marketing features. </p>
-                                                            </div>
-                                                            <ul className="pricing-list">
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Branding and design Identity
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Web site Marketing Solutions
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Free 15 GB Linux Hosting
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    24/7 system Monitoring
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    unlimited Download Data
-                                                                </li>
-                                                            </ul>
-                                                            <div className="pricing-button">
-                                                                <p>Up to 10 users + 1.99 per user</p>
-                                                                <a href="#" className="pricing-btn mt-4">
-                                                                    choose Plan <i
-                                                                        className="fa-solid fa-arrow-right-long"></i>
-                                                                </a>
-                                                            </div>
+                                        <div className="comparison-table-container wow fadeInUp" data-wow-delay=".3s">
+                                            <div className="comparison-table">
+                                                {/* Header Row */}
+                                                <div className="comp-row comp-header">
+                                                    <div className="comp-cell comp-criterion-header">Criterion</div>
+                                                    <div className="comp-cell comp-traditional-header">Traditional Outsourcing / Freelancers</div>
+                                                    <div className="comp-cell comp-infatoz-header-col">
+                                                        <div className="comp-infatoz-badge">The Infatoz Model</div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Row 1 */}
+                                                <div className="comp-row">
+                                                    <div className="comp-cell comp-criterion">
+                                                        <h3>Project Discovery</h3>
+                                                        <p>How the scope and requirements are defined.</p>
+                                                    </div>
+                                                    <div className="comp-cell comp-traditional">
+                                                        <div className="mobile-label">Traditional Outsourcing:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-cross">✕</span>
+                                                            <p>Vague agreements and quick quotes that lead to unexpected scope creep, budget extensions, and delayed timelines midway through development.</p>
                                                         </div>
                                                     </div>
-
-                                                    <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                                                        data-wow-delay=".5s">
-                                                        <div className="pricing-items active">
-                                                            <div className="tag">
-                                                                <h6>Most Popular</h6>
-                                                            </div>
-                                                            <div className="pricing-header">
-                                                                <h2>$179</h2>
-                                                                <span>Per month</span>
-                                                                <p>
-                                                                    Complete features including priority support, hosting, and unlimited downloads. </p>
-                                                            </div>
-                                                            <ul className="pricing-list">
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Branding and design Identity
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Web site Marketing Solutions
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Free 15 GB Linux Hosting
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    24/7 system Monitoring
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    unlimited Download Data
-                                                                </li>
-                                                            </ul>
-                                                            <div className="pricing-button">
-                                                                <p>Up to 10 users + 1.99 per user</p>
-                                                                <a href="#" className="pricing-btn mt-4">
-                                                                    choose Plan <i
-                                                                        className="fa-solid fa-arrow-right-long"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                                                        data-wow-delay=".5s">
-                                                        <div className="pricing-items ">
-                                                            <div className="tag">
-                                                                <h6>Premium</h6>
-                                                            </div>
-                                                            <div className="pricing-header">
-                                                                <h2>$199</h2>
-                                                                <span>Per month</span>
-                                                                <p>
-                                                                    Ultimate enterprise solution with custom hosting, 24/7 monitoring, and support. </p>
-                                                            </div>
-                                                            <ul className="pricing-list">
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Branding and design Identity
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Web site Marketing Solutions
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Free 15 GB Linux Hosting
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    24/7 system Monitoring
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    unlimited Download Data
-                                                                </li>
-                                                            </ul>
-                                                            <div className="pricing-button">
-                                                                <p>Up to 10 users + 1.99 per user</p>
-                                                                <a href="#" className="pricing-btn mt-4">
-                                                                    choose Plan <i
-                                                                        className="fa-solid fa-arrow-right-long"></i>
-                                                                </a>
-                                                            </div>
+                                                    <div className="comp-cell comp-infatoz">
+                                                        <div className="mobile-label">The Infatoz Model:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-check">✓</span>
+                                                            <p><strong>Fixed Specifications.</strong> We create a comprehensive roadmap, detailed user stories, and interactive wireframes prior to contract signing to guarantee price and timeline accuracy.</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div id="yearly" className="tab-pane fade show" role="tabpanel">
-                                                <div className="row">
 
-                                                    <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                                                        data-wow-delay=".5s">
-                                                        <div className="pricing-items ">
-                                                            <div className="tag">
-                                                                <h6>Basic Plan</h6>
-                                                            </div>
-                                                            <div className="pricing-header">
-                                                                <h2>$249</h2>
-                                                                <span>Per year</span>
-                                                                <p>
-                                                                    Affordable yearly plan covering core design, security, and digital marketing. </p>
-                                                            </div>
-                                                            <ul className="pricing-list">
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Branding and design Identity
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Web site Marketing Solutions
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Free 15 GB Linux Hosting
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    24/7 system Monitoring
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    unlimited Download Data
-                                                                </li>
-                                                            </ul>
-                                                            <div className="pricing-button">
-                                                                <p>Up to 10 users + 1.99 per user</p>
-                                                                <a href="#" className="pricing-btn mt-4">
-                                                                    choose Plan <i
-                                                                        className="fa-solid fa-arrow-right-long"></i>
-                                                                </a>
-                                                            </div>
+                                                {/* Row 2 */}
+                                                <div className="comp-row">
+                                                    <div className="comp-cell comp-criterion">
+                                                        <h3>Engineering Talent</h3>
+                                                        <p>Who designs and builds your code.</p>
+                                                    </div>
+                                                    <div className="comp-cell comp-traditional">
+                                                        <div className="mobile-label">Traditional Outsourcing:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-cross">✕</span>
+                                                            <p>High developer turnover with juniors learning on your budget. Lack of architectural standards and peer code reviews, leading to technical debt.</p>
                                                         </div>
                                                     </div>
-
-                                                    <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                                                        data-wow-delay=".5s">
-                                                        <div className="pricing-items active">
-                                                            <div className="tag">
-                                                                <h6>Most Popular</h6>
-                                                            </div>
-                                                            <div className="pricing-header">
-                                                                <h2>$279</h2>
-                                                                <span>Per year</span>
-                                                                <p>
-                                                                    Complete yearly plan including priority support, hosting, and unlimited downloads. </p>
-                                                            </div>
-                                                            <ul className="pricing-list">
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Branding and design Identity
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Web site Marketing Solutions
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Free 15 GB Linux Hosting
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    24/7 system Monitoring
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    unlimited Download Data
-                                                                </li>
-                                                            </ul>
-                                                            <div className="pricing-button">
-                                                                <p>Up to 10 users + 1.99 per user</p>
-                                                                <a href="#" className="pricing-btn mt-4">
-                                                                    choose Plan <i
-                                                                        className="fa-solid fa-arrow-right-long"></i>
-                                                                </a>
-                                                            </div>
+                                                    <div className="comp-cell comp-infatoz">
+                                                        <div className="mobile-label">The Infatoz Model:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-check">✓</span>
+                                                            <p><strong>Elite Tech Leads.</strong> Hand-picked senior developers assigned to your project. Standardized pull request reviews, strict styling rules, and professional DevOps practices.</p>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                                                        data-wow-delay=".5s">
-                                                        <div className="pricing-items ">
-                                                            <div className="tag">
-                                                                <h6>Premium</h6>
-                                                            </div>
-                                                            <div className="pricing-header">
-                                                                <h2>$399</h2>
-                                                                <span>Per year</span>
-                                                                <p>
-                                                                    Ultimate yearly enterprise solution with custom hosting, 24/7 monitoring, and support. </p>
-                                                            </div>
-                                                            <ul className="pricing-list">
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Branding and design Identity
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Web site Marketing Solutions
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    Free 15 GB Linux Hosting
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    24/7 system Monitoring
-                                                                </li>
-                                                                <li>
-                                                                    <i className="fa-solid fa-check"></i>
-                                                                    unlimited Download Data
-                                                                </li>
-                                                            </ul>
-                                                            <div className="pricing-button">
-                                                                <p>Up to 10 users + 1.99 per user</p>
-                                                                <a href="#" className="pricing-btn mt-4">
-                                                                    choose Plan <i
-                                                                        className="fa-solid fa-arrow-right-long"></i>
-                                                                </a>
-                                                            </div>
+                                                {/* Row 3 */}
+                                                <div className="comp-row">
+                                                    <div className="comp-cell comp-criterion">
+                                                        <h3>Communication</h3>
+                                                        <p>How progress is updated and reported.</p>
+                                                    </div>
+                                                    <div className="comp-cell comp-traditional">
+                                                        <div className="mobile-label">Traditional Outsourcing:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-cross">✕</span>
+                                                            <p>Intermittent emails, delayed follow-ups, and a lack of real-time visibility. Major bugs or misalignment are often only noticed during final delivery.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="comp-cell comp-infatoz">
+                                                        <div className="mobile-label">The Infatoz Model:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-check">✓</span>
+                                                            <p><strong>Direct Slack &amp; Demos.</strong> Continuous deployment with weekly builds. You have direct access to your dedicated lead developer via Slack, JIRA, and live check-ins.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Row 4 */}
+                                                <div className="comp-row">
+                                                    <div className="comp-cell comp-criterion">
+                                                        <h3>Code &amp; IP Security</h3>
+                                                        <p>Who owns the intellectual property and code.</p>
+                                                    </div>
+                                                    <div className="comp-cell comp-traditional">
+                                                        <div className="mobile-label">Traditional Outsourcing:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-cross">✕</span>
+                                                            <p>Confusing contract terms on ownership, zero penetration testing, and heavy reliance on proprietary pre-built platforms that lock you in.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="comp-cell comp-infatoz">
+                                                        <div className="mobile-label">The Infatoz Model:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-check">✓</span>
+                                                            <p><strong>100% IP Handover.</strong> Clean, self-documenting code fully transferred to you. We perform industry-standard security linting and OWASP top-10 security screening.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Row 5 */}
+                                                <div className="comp-row">
+                                                    <div className="comp-cell comp-criterion">
+                                                        <h3>Post-Launch Support</h3>
+                                                        <p>What happens after the product goes live.</p>
+                                                    </div>
+                                                    <div className="comp-cell comp-traditional">
+                                                        <div className="mobile-label">Traditional Outsourcing:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-cross">✕</span>
+                                                            <p>No SLA guarantees. Expensive ad-hoc hourly pricing for bugs, and long response delays during critical system outages.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="comp-cell comp-infatoz">
+                                                        <div className="mobile-label">The Infatoz Model:</div>
+                                                        <div className="comp-text-wrapper">
+                                                            <span className="comp-icon comp-check">✓</span>
+                                                            <p><strong>Dedicated SLA Support.</strong> Proactive security patching, database optimization, cloud cost monitoring, and rapid SLA-guaranteed emergency responses.</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1624,7 +1461,6 @@ export default function HomeContent() {
                                     </div>
                                 </div>
                             </section>
-
 
                         </div>
                     </div>
