@@ -1602,121 +1602,85 @@ export default function HomeContent() {
                         </div>
                     </div>
                 </div>
-                <div className="elementor-element elementor-element-6207eda e-con-full e-flex e-con e-parent"
+                  <div className="elementor-element elementor-element-6207eda e-con-full e-flex e-con e-parent"
                     data-id="6207eda" data-element_type="container" data-e-type="container">
                     <div className="elementor-element elementor-element-1276a73 elementor-widget elementor-widget-infatoz-heading-with-button-widget"
                         data-id="1276a73" data-element_type="widget" data-e-type="widget"
                         data-widget_type="infatoz-heading-with-button-widget.default">
                         <div className="elementor-widget-container">
 
-
-                            
-
-                            <div className="section-title text-center">
-                                <span className="wow fadeInUp">ARTICLE</span>
-                                <h2 className="wow fadeInUp" data-wow-delay=".3s">
-                                    Read Our Latest Blog </h2>
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-                    <div className="elementor-element elementor-element-3806552 elementor-widget elementor-widget-infatoz-blog-post-widget"
-                        data-id="3806552" data-element_type="widget" data-e-type="widget"
-                        data-widget_type="infatoz-blog-post-widget.default">
-                        <div className="elementor-widget-container">
-
-
-
-
-                            
-
-
-                            <section className="news-section fix">
+                            <section className="founders-section fix">
                                 <div className="container">
-                                </div>
-                                <div className="news-wrapper">
-                                    <div className="row">
+                                    <div className="section-title text-center mb-5">
+                                        <span className="wow fadeInUp" style={{ color: "#384BFF", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase", fontSize: "14px", display: "block", marginBottom: "10px" }}>OUR LEADERSHIP</span>
+                                        <h2 className="wow fadeInUp" data-wow-delay=".3s" style={{ fontSize: "42px", fontWeight: "700", color: "#0f0d1d", marginBottom: "15px", fontFamily: "'Kumbh Sans', sans-serif" }}>
+                                            Meet Our Founders
+                                        </h2>
+                                        <p className="wow fadeInUp" data-wow-delay=".5s" style={{ color: "#585858", fontSize: "16px", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
+                                            The visionary team leading Infatoz Technologies toward digital innovation and enterprise engineering excellence.
+                                        </p>
+                                    </div>
 
+                                    <div className="row g-4 justify-content-center">
+                                        {/* Founder 1 */}
                                         <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                            <div className="single-news-items">
-                                                <div className="news-image bg-cover"
-                                                    style={{backgroundImage: "url('/wp-content/uploads/2024/04/blog-1.jpg')"}}>
-                                                    <div className="post-date">
-                                                        <span>April 21, 2024</span>
+                                            <div className="founder-card">
+                                                <div className="founder-image-wrapper">
+                                                    <img src="/wp-content/uploads/2024/04/13-1.jpg" alt="Alex Carter" className="founder-image" />
+                                                    <div className="founder-socials">
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-linkedin-in"></i></a>
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-twitter"></i></a>
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-github"></i></a>
                                                     </div>
                                                 </div>
-                                                <div className="news-content">
-                                                    <h3>
-                                                        <a
-                                                            href="#">Supervisor
-                                                            Disapproved Of Latest Work</a>
-                                                    </h3>
-                                                    <p>
-                                                        We analyze recent management trends and how alignment issues between teams and supervisors can impact technical project timelines.&hellip; </p>
-                                                    <a href="#"
-                                                        className="theme-btn-2 mt-3">
-                                                        Read More
-                                                    </a>
+                                                <div className="founder-info">
+                                                    <h3>Alex Carter</h3>
+                                                    <span>Co-Founder &amp; CEO</span>
+                                                    <p>Ex-Google Lead Engineer with 12+ years of experience building scalable enterprise software and leading cross-functional teams.</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                            <div className="single-news-items">
-                                                <div className="news-image bg-cover"
-                                                    style={{backgroundImage: "url('/wp-content/uploads/2024/04/blog-3.jpg')"}}>
-                                                    <div className="post-date">
-                                                        <span>April 21, 2024</span>
+                                        {/* Founder 2 */}
+                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                                            <div className="founder-card">
+                                                <div className="founder-image-wrapper">
+                                                    <img src="/wp-content/uploads/2024/04/02-4.jpg" alt="Sarah Jenkins" className="founder-image" />
+                                                    <div className="founder-socials">
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-linkedin-in"></i></a>
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-twitter"></i></a>
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-github"></i></a>
                                                     </div>
                                                 </div>
-                                                <div className="news-content">
-                                                    <h3>
-                                                        <a
-                                                            href="#">Unlocking
-                                                            Potential Through Technology</a>
-                                                    </h3>
-                                                    <p>
-                                                        Discover how emerging cloud native platforms and automation tools can help your engineering teams scale and reduce time-to-market.&hellip; </p>
-                                                    <a href="#"
-                                                        className="theme-btn-2 mt-3">
-                                                        Read More
-                                                    </a>
+                                                <div className="founder-info">
+                                                    <h3>Sarah Jenkins</h3>
+                                                    <span>Co-Founder &amp; CTO</span>
+                                                    <p>Full stack architect specializing in cloud infrastructure, high-availability databases, and secure backend systems engineering.</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                            <div className="single-news-items">
-                                                <div className="news-image bg-cover"
-                                                    style={{backgroundImage: "url('/wp-content/uploads/2024/04/blog-2.jpg')"}}>
-                                                    <div className="post-date">
-                                                        <span>April 21, 2024</span>
+                                        {/* Founder 3 */}
+                                        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                                            <div className="founder-card">
+                                                <div className="founder-image-wrapper">
+                                                    <img src="/wp-content/uploads/2024/04/03-3.jpg" alt="David Vance" className="founder-image" />
+                                                    <div className="founder-socials">
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-linkedin-in"></i></a>
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-twitter"></i></a>
+                                                        <a href="#" className="founder-social-link"><i className="fab fa-github"></i></a>
                                                     </div>
                                                 </div>
-                                                <div className="news-content">
-                                                    <h3>
-                                                        <a
-                                                            href="#">Simplify
-                                                            Streamline Succeed IT Solutions</a>
-                                                    </h3>
-                                                    <p>
-                                                        A comprehensive guide on simplifying enterprise IT infrastructure, streamlining operations, and achieving digital success.&hellip; </p>
-                                                    <a href="#"
-                                                        className="theme-btn-2 mt-3">
-                                                        Read More
-                                                    </a>
+                                                <div className="founder-info">
+                                                    <h3>David Vance</h3>
+                                                    <span>Co-Founder &amp; Chief Architect</span>
+                                                    <p>UI/UX strategist and frontend system designer dedicated to crafting highly responsive, user-centric web applications.</p>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </section>
-
-
 
                         </div>
                     </div>
