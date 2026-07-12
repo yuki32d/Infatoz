@@ -527,7 +527,7 @@ export default function HomeContent() {
                                     {name:'AWS',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'},
                                     {name:'Microsoft Azure',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg'},
                                     {name:'OpenAI',logo:'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg'},
-                                    {name:'Shopify',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg'},
+                                    {name:'Shopify',logo:'https://cdn.simpleicons.org/shopify/96bf48'},
                                     {name:'Frappe',logo:'https://frappe.io/files/frappe-logo.png'},
                                     {name:'React Native',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'},
                                     {name:'Flutter',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg'},
