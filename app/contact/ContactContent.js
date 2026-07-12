@@ -4,6 +4,61 @@ import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+const countriesList = [
+  { code: 'in', name: 'India', dial: '+91' },
+  { code: 'us', name: 'United States', dial: '+1' },
+  { code: 'gb', name: 'United Kingdom', dial: '+44' },
+  { code: 'ca', name: 'Canada', dial: '+1' },
+  { code: 'au', name: 'Australia', dial: '+61' },
+  { code: 'de', name: 'Germany', dial: '+49' },
+  { code: 'fr', name: 'France', dial: '+33' },
+  { code: 'it', name: 'Italy', dial: '+39' },
+  { code: 'jp', name: 'Japan', dial: '+81' },
+  { code: 'sg', name: 'Singapore', dial: '+65' },
+  { code: 'ae', name: 'United Arab Emirates', dial: '+971' },
+  { code: 'sa', name: 'Saudi Arabia', dial: '+966' },
+  { code: 'za', name: 'South Africa', dial: '+27' },
+  { code: 'nz', name: 'New Zealand', dial: '+64' },
+  { code: 'ie', name: 'Ireland', dial: '+353' },
+  { code: 'ch', name: 'Switzerland', dial: '+41' },
+  { code: 'nl', name: 'Netherlands', dial: '+31' },
+  { code: 'se', name: 'Sweden', dial: '+46' },
+  { code: 'no', name: 'Norway', dial: '+47' },
+  { code: 'dk', name: 'Denmark', dial: '+45' },
+  { code: 'es', name: 'Spain', dial: '+34' },
+  { code: 'br', name: 'Brazil', dial: '+55' },
+  { code: 'mx', name: 'Mexico', dial: '+52' },
+  { code: 'ru', name: 'Russia', dial: '+7' },
+  { code: 'cn', name: 'China', dial: '+86' },
+  { code: 'kr', name: 'South Korea', dial: '+82' },
+  { code: 'hk', name: 'Hong Kong', dial: '+852' },
+  { code: 'my', name: 'Malaysia', dial: '+60' },
+  { code: 'th', name: 'Thailand', dial: '+66' },
+  { code: 'id', name: 'Indonesia', dial: '+62' },
+  { code: 'ph', name: 'Philippines', dial: '+63' },
+  { code: 'vn', name: 'Vietnam', dial: '+84' },
+  { code: 'tr', name: 'Turkey', dial: '+90' },
+  { code: 'il', name: 'Israel', dial: '+972' },
+  { code: 'at', name: 'Austria', dial: '+43' },
+  { code: 'be', name: 'Belgium', dial: '+32' },
+  { code: 'fi', name: 'Finland', dial: '+358' },
+  { code: 'gr', name: 'Greece', dial: '+30' },
+  { code: 'pt', name: 'Portugal', dial: '+351' },
+  { code: 'pl', name: 'Poland', dial: '+48' },
+  { code: 'ua', name: 'Ukraine', dial: '+380' },
+  { code: 'ar', name: 'Argentina', dial: '+54' },
+  { code: 'cl', name: 'Chile', dial: '+56' },
+  { code: 'co', name: 'Colombia', dial: '+57' },
+  { code: 'pe', name: 'Peru', dial: '+51' },
+  { code: 'eg', name: 'Egypt', dial: '+20' },
+  { code: 'ng', name: 'Nigeria', dial: '+234' },
+  { code: 'ke', name: 'Kenya', dial: '+254' },
+  { code: 'bd', name: 'Bangladesh', dial: '+880' },
+  { code: 'pk', name: 'Pakistan', dial: '+92' },
+  { code: 'lk', name: 'Sri Lanka', dial: '+94' },
+  { code: 'np', name: 'Nepal', dial: '+977' }
+];
+
 export default function ContactContent() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -12,6 +67,13 @@ export default function ContactContent() {
     phone: '',
     message: ''
   });
+  const [selectedCountry, setSelectedCountry] = useState({
+    code: 'in',
+    name: 'India',
+    dial: '+91'
+  });
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [status, setStatus] = useState('');
 
   useEffect(() => {
@@ -36,6 +98,18 @@ export default function ContactContent() {
     }
   }, []);
 
+  // Handle outside clicks to close the custom dropdown
+  useEffect(() => {
+    if (!isDropdownOpen) return;
+    const handleOutsideClick = (e) => {
+      if (!e.target.closest('.ct-phone-select-custom') && !e.target.closest('.ct-phone-dropdown')) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [isDropdownOpen]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -44,6 +118,14 @@ export default function ContactContent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('sending');
+    
+    const submissionData = {
+      ...formData,
+      fullPhone: `${selectedCountry.dial} ${formData.phone}`
+    };
+    
+    console.log("Submitting form:", submissionData);
+
     // Simulate API request
     setTimeout(() => {
       setStatus('success');
@@ -54,8 +136,15 @@ export default function ContactContent() {
         phone: '',
         message: ''
       });
+      setSelectedCountry({ code: 'in', name: 'India', dial: '+91' });
     }, 1500);
   };
+
+  const filteredCountries = countriesList.filter((c) =>
+    c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    c.dial.includes(searchQuery) ||
+    c.code.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const brands = [
     { name: 'INTERCOM', icon: 'fa-comments' },
@@ -287,29 +376,126 @@ export default function ContactContent() {
           display: flex;
           border: 1px solid #cbd5e1;
           border-radius: 8px;
-          overflow: hidden;
+          overflow: visible;
           transition: all 0.3s;
         }
         .ct-phone-input-wrap:focus-within {
           border-color: #384BFF;
           box-shadow: 0 0 0 3px rgba(56, 75, 255, 0.1);
         }
-        .ct-phone-select {
+        
+        /* Custom Dropdown Trigger */
+        .ct-phone-select-custom {
           background: #f8fafc;
           border: none;
           border-right: 1px solid #cbd5e1;
-          padding: 0 12px;
-          font-size: 14px;
-          font-weight: 600;
-          color: #0f0d1d;
+          display: flex;
+          align-items: center;
+          padding: 0 16px;
           cursor: pointer;
-          outline: none;
+          user-select: none;
+          gap: 8px;
+          min-width: 115px;
+          border-top-left-radius: 7px;
+          border-bottom-left-radius: 7px;
         }
+        .ct-phone-select-custom:hover {
+          background: #f1f5f9;
+        }
+        .ct-selected-flag {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          object-fit: cover;
+          display: inline-block;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          flex-shrink: 0;
+        }
+        .ct-selected-code {
+          font-size: 14px;
+          font-weight: 700;
+          color: #0f0d1d;
+          white-space: nowrap;
+        }
+        
+        /* Dropdown custom lists */
+        .ct-phone-dropdown {
+          position: absolute;
+          top: calc(100% + 6px);
+          left: 0;
+          width: 320px;
+          max-height: 280px;
+          background: #ffffff;
+          border: 1px solid #cbd5e1;
+          border-radius: 8px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          z-index: 999;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .ct-search-box {
+          position: sticky;
+          top: 0;
+          background: #ffffff;
+          padding: 8px;
+          border-bottom: 1px solid #e2e8f0;
+          z-index: 2;
+        }
+        .ct-search-input {
+          width: 100%;
+          border: 1px solid #cbd5e1;
+          border-radius: 6px;
+          padding: 8px 12px;
+          font-size: 14px;
+          outline: none;
+          font-family: inherit;
+        }
+        .ct-search-input:focus {
+          border-color: #384BFF;
+        }
+        .ct-country-list {
+          overflow-y: auto;
+          flex-grow: 1;
+          padding: 4px 0;
+        }
+        .ct-country-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 16px;
+          cursor: pointer;
+          transition: background 0.2s;
+          font-size: 14px;
+          color: #0f0d1d;
+        }
+        .ct-country-row:hover {
+          background: #f1f5f9;
+        }
+        .ct-country-row-left {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .ct-country-name {
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 180px;
+        }
+        .ct-country-dial {
+          font-weight: 700;
+          color: #585858;
+        }
+
         .ct-phone-input {
           border: none;
           border-radius: 0;
           padding: 12px 16px;
           flex-grow: 1;
+          border-top-right-radius: 7px;
+          border-bottom-right-radius: 7px;
         }
         .ct-phone-input:focus {
           box-shadow: none;
@@ -525,12 +711,68 @@ export default function ContactContent() {
                 <div className="ct-form-group">
                   <label htmlFor="phone">Phone number*</label>
                   <div className="ct-phone-input-wrap">
-                    <select className="ct-phone-select" aria-label="Country Code">
-                      <option value="+91">🇮🇳 +91</option>
-                      <option value="+1">🇺🇸 +1</option>
-                      <option value="+44">🇬🇧 +44</option>
-                      <option value="+49">🇩🇪 +49</option>
-                    </select>
+                    
+                    {/* Custom State Dropdown Selector */}
+                    <div 
+                      className="ct-phone-select-custom" 
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    >
+                      <img 
+                        src={`https://flagcdn.com/w40/${selectedCountry.code}.png`} 
+                        alt={selectedCountry.name} 
+                        className="ct-selected-flag" 
+                      />
+                      <span className="ct-selected-code">{selectedCountry.code.toUpperCase()} {selectedCountry.dial}</span>
+                      <i className="fa-solid fa-chevron-down" style={{ fontSize: '11px', color: '#64748b' }}></i>
+                    </div>
+
+                    {/* Custom Dropdown Country Lists Panel */}
+                    {isDropdownOpen && (
+                      <div className="ct-phone-dropdown">
+                        <div className="ct-search-box">
+                          <input 
+                            type="text" 
+                            placeholder="Search country or code..." 
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="ct-search-input"
+                            onClick={(e) => e.stopPropagation()}
+                            autoFocus
+                          />
+                        </div>
+                        <div className="ct-country-list">
+                          {filteredCountries.length > 0 ? (
+                            filteredCountries.map((country) => (
+                              <div 
+                                key={country.code} 
+                                className="ct-country-row"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedCountry(country);
+                                  setIsDropdownOpen(false);
+                                  setSearchQuery('');
+                                }}
+                              >
+                                <div className="ct-country-row-left">
+                                  <img 
+                                    src={`https://flagcdn.com/w40/${country.code}.png`} 
+                                    alt={country.name} 
+                                    className="ct-selected-flag" 
+                                  />
+                                  <span className="ct-country-name">{country.name}</span>
+                                </div>
+                                <span className="ct-country-dial">{country.dial}</span>
+                              </div>
+                            ))
+                          ) : (
+                            <div style={{ padding: '12px 16px', color: '#64748b', fontSize: '14px', textAlign: 'center' }}>
+                              No country found
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
                     <input
                       type="tel"
                       id="phone"
