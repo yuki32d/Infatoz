@@ -188,11 +188,24 @@ export default function ContactContent() {
     }, 1500);
   };
 
-  const filteredCountries = countriesList.filter((c) =>
-    c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    c.dial.includes(searchQuery) ||
-    c.code.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCountries = countriesList.filter((c) => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return true;
+    // Common abbreviation aliases
+    const aliases = {
+      usa: 'us', america: 'us',
+      uk: 'gb', britain: 'gb', england: 'gb',
+      uae: 'ae', dubai: 'ae',
+    };
+    const resolvedCode = aliases[q];
+    if (resolvedCode && c.code === resolvedCode) return true;
+    return (
+      c.name.toLowerCase().includes(q) ||
+      c.dial.includes(q) ||
+      c.code.toLowerCase().includes(q) ||
+      c.name.toLowerCase().replace(/\s+/g, '').includes(q.replace(/\s+/g, ''))
+    );
+  });
 
   const brands = [
     { name: 'INTERCOM', icon: 'fa-comments' },
@@ -500,6 +513,8 @@ export default function ContactContent() {
           font-size: 14px;
           outline: none;
           font-family: inherit;
+          color: #0f0d1d;
+          background: #ffffff;
         }
         .ct-search-input:focus {
           border-color: #384BFF;
