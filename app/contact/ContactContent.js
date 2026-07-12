@@ -610,47 +610,29 @@ export default function ContactContent() {
 
         /* Tech Stack Strip Section */
         .ct-tech-strip {
-          background: #06071a;
-          padding: 0;
-          overflow: hidden;
-          border-top: 1px solid rgba(56, 75, 255, 0.2);
-          border-bottom: 1px solid rgba(56, 75, 255, 0.2);
+          background: #ffffff;
+          padding: 60px 0;
+          border-top: 1px solid #e8ecf0;
+          border-bottom: 1px solid #e8ecf0;
         }
-        .ct-tech-inner {
-          display: flex;
-          align-items: center;
-          gap: 0;
-        }
-        .ct-tech-label {
-          flex-shrink: 0;
-          padding: 28px 48px 28px 60px;
-          border-right: 1px solid rgba(255,255,255,0.08);
-          background: #06071a;
-          z-index: 2;
-          position: relative;
-        }
-        .ct-tech-label strong {
-          display: block;
-          font-size: 14px;
-          font-weight: 800;
-          color: #ffffff;
-          line-height: 1.4;
-          font-family: 'Kumbh Sans', sans-serif;
+        .ct-tech-title {
+          text-align: center;
+          font-size: 15px;
+          font-weight: 600;
+          color: #64748b;
+          margin-bottom: 40px;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
-          white-space: nowrap;
+          letter-spacing: 1.5px;
+          font-family: 'Kumbh Sans', sans-serif;
         }
-        .ct-tech-marquee-wrap {
-          flex: 1;
+        .ct-tech-marquee-outer {
           overflow: hidden;
-          position: relative;
           mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
           -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
         .ct-tech-marquee {
           display: flex;
-          gap: 0;
-          animation: ct-scroll 30s linear infinite;
+          animation: ct-scroll 28s linear infinite;
           width: max-content;
         }
         .ct-tech-marquee:hover {
@@ -664,38 +646,32 @@ export default function ContactContent() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
-          gap: 10px;
-          padding: 24px 44px;
-          border-right: 1px solid rgba(255,255,255,0.06);
-          min-width: 130px;
-          transition: background 0.3s;
+          gap: 12px;
+          padding: 0 52px;
           cursor: default;
         }
-        .ct-tech-item:hover {
-          background: rgba(56, 75, 255, 0.07);
-        }
         .ct-tech-item img {
-          width: 38px;
-          height: 38px;
+          width: 48px;
+          height: 48px;
           object-fit: contain;
-          filter: brightness(0.85) saturate(0.9);
-          transition: filter 0.3s, transform 0.3s;
+          filter: grayscale(1) opacity(0.5);
+          transition: filter 0.35s, transform 0.35s;
         }
         .ct-tech-item:hover img {
-          filter: brightness(1) saturate(1);
-          transform: scale(1.12);
+          filter: grayscale(0) opacity(1);
+          transform: scale(1.1);
         }
         .ct-tech-item span {
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 600;
-          color: rgba(255,255,255,0.55);
-          white-space: nowrap;
-          letter-spacing: 0.3px;
+          color: #94a3b8;
+          letter-spacing: 0.2px;
           transition: color 0.3s;
+          font-family: 'Kumbh Sans', sans-serif;
+          white-space: nowrap;
         }
         .ct-tech-item:hover span {
-          color: rgba(255,255,255,0.9);
+          color: #384BFF;
         }
 
         /* Alert Status Styling */
@@ -944,19 +920,15 @@ export default function ContactContent() {
 
         {/* Next-Gen Tech Stack Strip */}
         <section className="ct-tech-strip">
-          <div className="ct-tech-inner">
-            <div className="ct-tech-label">
-              <strong>Next-Generation<br />Development<br />Technologies</strong>
-            </div>
-            <div className="ct-tech-marquee-wrap">
-              <div className="ct-tech-marquee">
-                {[...techStack, ...techStack].map((tech, i) => (
-                  <div key={i} className="ct-tech-item">
-                    <img src={tech.logo} alt={tech.name} />
-                    <span>{tech.name}</span>
-                  </div>
-                ))}
-              </div>
+          <p className="ct-tech-title">Next-Generation Development Technologies</p>
+          <div className="ct-tech-marquee-outer">
+            <div className="ct-tech-marquee">
+              {[...techStack, ...techStack].map((tech, i) => (
+                <div key={i} className="ct-tech-item">
+                  <img src={tech.logo} alt={tech.name} />
+                  <span>{tech.name}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
