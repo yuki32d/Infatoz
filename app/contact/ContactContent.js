@@ -513,8 +513,14 @@ export default function ContactContent() {
           font-size: 14px;
           outline: none;
           font-family: inherit;
-          color: #0f0d1d;
-          background: #ffffff;
+          color: #0f0d1d !important;
+          background: #ffffff !important;
+          -webkit-text-fill-color: #0f0d1d !important;
+        }
+        .ct-search-input::placeholder {
+          color: #94a3b8 !important;
+          -webkit-text-fill-color: #94a3b8 !important;
+          opacity: 1;
         }
         .ct-search-input:focus {
           border-color: #384BFF;
