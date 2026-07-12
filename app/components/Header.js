@@ -139,7 +139,7 @@ export default function Header() {
                                                     <a href="#">Blog</a>
                                                 </li>
                                                 <li id="menu-item-1719" className="menu-item menu-item-1719">
-                                                    <a href="#">Contact</a>
+                                                    <Link href="/contact">Contact</Link>
                                                 </li>
                                             </ul>
                                         </div>
