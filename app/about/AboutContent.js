@@ -375,15 +375,54 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ── BRANDS ── */}
-      <section className="ab-brands-section">
-        <div className="ab-container">
-          <p className="ab-brands-label">1k+ Brands Trust Us</p>
-          <div className="swiper ab-brand-slider">
-            <div className="swiper-wrapper">
-              {[...Array(8)].map((_, i) => (
-                <div key={i} className="swiper-slide">
-                  <img src="/wp-content/uploads/2024/04/brand.png" alt="Brand" />
+      {/* ── NEXT-GEN TECH STRIP ── */}
+      <section style={{background:'#06071a',overflow:'hidden',borderTop:'1px solid rgba(56,75,255,0.2)',borderBottom:'1px solid rgba(56,75,255,0.2)',padding:0}}>
+        <style>{`
+          @keyframes ab-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+          .ab-tech-inner{display:flex;align-items:center}
+          .ab-tech-label{flex-shrink:0;padding:28px 48px 28px 60px;border-right:1px solid rgba(255,255,255,0.08);background:#06071a;z-index:2;position:relative}
+          .ab-tech-label strong{display:block;font-size:13px;font-weight:800;color:#fff;line-height:1.5;font-family:'Kumbh Sans',sans-serif;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+          .ab-marquee-wrap{flex:1;overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
+          .ab-marquee{display:flex;animation:ab-scroll 30s linear infinite;width:max-content}
+          .ab-marquee:hover{animation-play-state:paused}
+          .ab-tech-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px 44px;border-right:1px solid rgba(255,255,255,0.06);min-width:130px;transition:background 0.3s;cursor:default}
+          .ab-tech-item:hover{background:rgba(56,75,255,0.07)}
+          .ab-tech-item img{width:38px;height:38px;object-fit:contain;filter:brightness(0.85) saturate(0.9);transition:filter 0.3s,transform 0.3s}
+          .ab-tech-item:hover img{filter:brightness(1) saturate(1);transform:scale(1.12)}
+          .ab-tech-item span{font-size:11px;font-weight:600;color:rgba(255,255,255,0.55);white-space:nowrap;letter-spacing:0.3px;transition:color 0.3s}
+          .ab-tech-item:hover span{color:rgba(255,255,255,0.9)}
+        `}</style>
+        <div className="ab-tech-inner">
+          <div className="ab-tech-label">
+            <strong>Next-Generation<br/>Development<br/>Technologies</strong>
+          </div>
+          <div className="ab-marquee-wrap">
+            <div className="ab-marquee">
+              {[
+                {name:'React Native',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'},
+                {name:'Flutter',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg'},
+                {name:'Node.js',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'},
+                {name:'Python',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'},
+                {name:'Google Cloud',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg'},
+                {name:'AWS',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'},
+                {name:'Microsoft Azure',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg'},
+                {name:'OpenAI',logo:'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg'},
+                {name:'Shopify',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg'},
+                {name:'Frappe',logo:'https://frappe.io/files/frappe-logo.png'},
+                {name:'React Native',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'},
+                {name:'Flutter',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg'},
+                {name:'Node.js',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg'},
+                {name:'Python',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'},
+                {name:'Google Cloud',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg'},
+                {name:'AWS',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'},
+                {name:'Microsoft Azure',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg'},
+                {name:'OpenAI',logo:'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg'},
+                {name:'Shopify',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg'},
+                {name:'Frappe',logo:'https://frappe.io/files/frappe-logo.png'},
+              ].map((tech, i) => (
+                <div key={i} className="ab-tech-item">
+                  <img src={tech.logo} alt={tech.name} />
+                  <span>{tech.name}</span>
                 </div>
               ))}
             </div>
