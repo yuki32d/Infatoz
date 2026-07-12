@@ -216,7 +216,7 @@ export default function ContactContent() {
     { name: 'AWS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' },
     { name: 'Microsoft Azure', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
     { name: 'OpenAI', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg' },
-    { name: 'Shopify', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg' },
+    { name: 'Shopify', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Shopify.svg' },
     { name: 'Frappe', logo: 'https://frappe.io/files/frappe-logo.png' },
   ];
 
@@ -611,24 +611,24 @@ export default function ContactContent() {
         /* Tech Stack Strip Section */
         .ct-tech-strip {
           background: #ffffff;
-          padding: 60px 0;
+          padding: 100px 0;
           border-top: 1px solid #e8ecf0;
           border-bottom: 1px solid #e8ecf0;
         }
         .ct-tech-title {
           text-align: center;
           font-size: 15px;
-          font-weight: 600;
-          color: #64748b;
-          margin-bottom: 40px;
+          font-weight: 700;
+          color: #111827;
+          margin-bottom: 48px;
           text-transform: uppercase;
           letter-spacing: 1.5px;
           font-family: 'Kumbh Sans', sans-serif;
         }
         .ct-tech-marquee-outer {
           overflow: hidden;
-          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
         }
         .ct-tech-marquee {
           display: flex;
@@ -646,25 +646,24 @@ export default function ContactContent() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 12px;
-          padding: 0 52px;
+          gap: 14px;
+          padding: 0 56px;
           cursor: default;
         }
         .ct-tech-item img {
-          width: 48px;
-          height: 48px;
+          width: 56px;
+          height: 56px;
           object-fit: contain;
-          filter: grayscale(1) opacity(0.5);
-          transition: filter 0.35s, transform 0.35s;
+          filter: none;
+          transition: transform 0.35s;
         }
         .ct-tech-item:hover img {
-          filter: grayscale(0) opacity(1);
-          transform: scale(1.1);
+          transform: scale(1.12);
         }
         .ct-tech-item span {
           font-size: 13px;
           font-weight: 600;
-          color: #94a3b8;
+          color: #64748b;
           letter-spacing: 0.2px;
           transition: color 0.3s;
           font-family: 'Kumbh Sans', sans-serif;

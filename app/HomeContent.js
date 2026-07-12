@@ -502,17 +502,17 @@ export default function HomeContent() {
 
 
                             
-                            <section style={{background:'#ffffff',padding:'60px 0',borderTop:'1px solid #e8ecf0',borderBottom:'1px solid #e8ecf0'}}>
+                            <section style={{background:'#ffffff',padding:'100px 0',borderTop:'1px solid #e8ecf0',borderBottom:'1px solid #e8ecf0'}}>
                               <style>{`
                                 @keyframes hc-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-                                .hc-section-title{text-align:center;font-size:15px;font-weight:600;color:#64748b;margin-bottom:40px;text-transform:uppercase;letter-spacing:1.5px;font-family:'Kumbh Sans',sans-serif}
-                                .hc-marquee-outer{overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
+                                .hc-section-title{text-align:center;font-size:15px;font-weight:700;color:#111827;margin-bottom:48px;text-transform:uppercase;letter-spacing:1.5px;font-family:'Kumbh Sans',sans-serif}
+                                .hc-marquee-outer{overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 6%,black 94%,transparent 100%)}
                                 .hc-marquee{display:flex;animation:hc-scroll 28s linear infinite;width:max-content}
                                 .hc-marquee:hover{animation-play-state:paused}
-                                .hc-tech-item{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 52px;cursor:default}
-                                .hc-tech-item img{width:48px;height:48px;object-fit:contain;filter:grayscale(1) opacity(0.5);transition:filter 0.35s,transform 0.35s}
-                                .hc-tech-item:hover img{filter:grayscale(0) opacity(1);transform:scale(1.1)}
-                                .hc-tech-item span{font-size:13px;font-weight:600;color:#94a3b8;letter-spacing:0.2px;transition:color 0.3s;font-family:'Kumbh Sans',sans-serif;white-space:nowrap}
+                                .hc-tech-item{display:flex;flex-direction:column;align-items:center;gap:14px;padding:0 56px;cursor:default}
+                                .hc-tech-item img{width:56px;height:56px;object-fit:contain;filter:none;transition:transform 0.35s}
+                                .hc-tech-item:hover img{transform:scale(1.12)}
+                                .hc-tech-item span{font-size:13px;font-weight:600;color:#64748b;letter-spacing:0.2px;transition:color 0.3s;font-family:'Kumbh Sans',sans-serif;white-space:nowrap}
                                 .hc-tech-item:hover span{color:#384BFF}
                               `}</style>
                               <p className="hc-section-title">Next-Generation Development Technologies</p>
@@ -537,7 +537,7 @@ export default function HomeContent() {
                                     {name:'AWS',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'},
                                     {name:'Microsoft Azure',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg'},
                                     {name:'OpenAI',logo:'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg'},
-                                    {name:'Shopify',logo:'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg'},
+                                    {name:'Shopify',logo:'https://upload.wikimedia.org/wikipedia/commons/e/ea/Shopify.svg'},
                                     {name:'Frappe',logo:'https://frappe.io/files/frappe-logo.png'},
                                   ].map((tech, i) => (
                                     <div key={i} className="hc-tech-item">
