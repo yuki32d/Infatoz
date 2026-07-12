@@ -16,7 +16,8 @@ export default function Footer() {
                 </div>
                 <div className="container">
                     <div className="row">
-                        {/* Column 1: Brand Logo & Description */}
+
+                        {/* Column 1: Brand Logo & Description — 3 cols */}
                         <div className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
                             <div className="single-footer-widget">
                                 <div className="widget-head">
@@ -37,8 +38,8 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Column 2: Other Pages */}
-                        <div className="col-xl-2 col-lg-4 col-md-6 ps-lg-5 wow fadeInUp" data-wow-delay=".5s">
+                        {/* Column 2: Other Pages — 2 cols (fixed from col-xl-2 with ps-lg-5 that caused gap) */}
+                        <div className="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
                             <div className="single-footer-widget widget_nav_menu">
                                 <div className="widget-head">
                                     <h3>Other Pages</h3>
@@ -56,8 +57,8 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Column 3: Support */}
-                        <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                        {/* Column 3: Support — 2 cols */}
+                        <div className="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
                             <div className="single-footer-widget widget_nav_menu">
                                 <div className="widget-head">
                                     <h3>Support</h3>
@@ -74,20 +75,38 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Column 4: Contact Details & Action */}
-                        <div className="col-xl-3 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".9s">
+                        {/* Column 4: Company — 2 cols (NEW) */}
+                        <div className="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                            <div className="single-footer-widget widget_nav_menu">
+                                <div className="widget-head">
+                                    <h3>Company</h3>
+                                </div>
+                                <div className="menu-footer-menu-1-container">
+                                    <ul className="menu">
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                        <li><a href="#">Case Studies</a></li>
+                                        <li><a href="#">Testimonials</a></li>
+                                        <li><a href="#">Partners</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Column 5: Contact Details & Action — 3 cols */}
+                        <div className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".9s">
                             <div className="single-footer-widget">
                                 <div className="footer-content">
                                     <h3 style={{ color: "#ffffff", fontSize: "16px", fontWeight: "700", marginBottom: "8px", fontFamily: "'Kumbh Sans', sans-serif" }}>Address</h3>
                                     <p style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "14px", lineHeight: "1.6", marginBottom: "20px" }}>
                                         1-42, Takkimane, Mahabaleshwara Nandanavana, Kergal, Kundapura, Udupi, Karnataka - 576219.
                                     </p>
-                                    
+
                                     <h3 style={{ color: "#ffffff", fontSize: "16px", fontWeight: "700", marginBottom: "5px", fontFamily: "'Kumbh Sans', sans-serif" }}>Phone</h3>
                                     <p style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "14px", marginBottom: "20px" }}>
                                         <a href="tel:+917019058591" style={{ color: "rgba(255, 255, 255, 0.7)", transition: "color 0.3s ease" }} onMouseEnter={(e) => e.target.style.color = '#384BFF'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>+91 7019058591</a>
                                     </p>
-                                    
+
                                     <h3 style={{ color: "#ffffff", fontSize: "16px", fontWeight: "700", marginBottom: "5px", fontFamily: "'Kumbh Sans', sans-serif" }}>Email</h3>
                                     <p style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "14px", marginBottom: "20px" }}>
                                         <a href="mailto:info@infatoz.com" style={{ color: "rgba(255, 255, 255, 0.7)", transition: "color 0.3s ease" }} onMouseEnter={(e) => e.target.style.color = '#384BFF'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>info@infatoz.com</a>
@@ -99,10 +118,12 @@ export default function Footer() {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-            {/* Footer Bottom containing Copyright and Social Icons */}
+
+            {/* Footer Bottom: Copyright + Social Icons */}
             <div className="footer-bottom">
                 <div className="container">
                     <div className="footer-wrapper d-flex align-items-center justify-content-between flex-wrap gap-3">
