@@ -207,13 +207,17 @@ export default function ContactContent() {
     );
   });
 
-  const brands = [
-    { name: 'INTERCOM', icon: 'fa-comments' },
-    { name: 'Dropbox', icon: 'fa-dropbox', brand: true },
-    { name: 'slack', icon: 'fa-slack', brand: true },
-    { name: 'zendesk', icon: 'fa-life-ring' },
-    { name: 'Revolut', icon: 'fa-credit-card' },
-    { name: 'HubSpot', icon: 'fa-hubspot', brand: true }
+  const techStack = [
+    { name: 'React Native', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+    { name: 'Flutter', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+    { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg' },
+    { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+    { name: 'Google Cloud', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
+    { name: 'AWS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' },
+    { name: 'Microsoft Azure', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
+    { name: 'OpenAI', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg' },
+    { name: 'Shopify', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg' },
+    { name: 'Frappe', logo: 'https://frappe.io/files/frappe-logo.png' },
   ];
 
   return (
@@ -604,47 +608,94 @@ export default function ContactContent() {
           box-shadow: none;
         }
 
-        /* Brands Banner Section */
-        .ct-brands-section {
-          padding: 70px 0;
-          background: #f8fafc;
-          border-top: 1px solid #e2e8f0;
-          border-bottom: 1px solid #e2e8f0;
-          text-align: center;
+        /* Tech Stack Strip Section */
+        .ct-tech-strip {
+          background: #06071a;
+          padding: 0;
+          overflow: hidden;
+          border-top: 1px solid rgba(56, 75, 255, 0.2);
+          border-bottom: 1px solid rgba(56, 75, 255, 0.2);
         }
-        .ct-brands-title {
-          font-size: 15px;
-          font-weight: 600;
-          color: #64748b;
-          margin-bottom: 35px;
+        .ct-tech-inner {
+          display: flex;
+          align-items: center;
+          gap: 0;
+        }
+        .ct-tech-label {
+          flex-shrink: 0;
+          padding: 28px 48px 28px 60px;
+          border-right: 1px solid rgba(255,255,255,0.08);
+          background: #06071a;
+          z-index: 2;
+          position: relative;
+        }
+        .ct-tech-label strong {
+          display: block;
+          font-size: 14px;
+          font-weight: 800;
+          color: #ffffff;
+          line-height: 1.4;
+          font-family: 'Kumbh Sans', sans-serif;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
+          white-space: nowrap;
         }
-        .ct-brands-grid {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 40px;
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 0 24px;
+        .ct-tech-marquee-wrap {
+          flex: 1;
+          overflow: hidden;
+          position: relative;
+          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
-        .ct-brand-item {
+        .ct-tech-marquee {
           display: flex;
+          gap: 0;
+          animation: ct-scroll 30s linear infinite;
+          width: max-content;
+        }
+        .ct-tech-marquee:hover {
+          animation-play-state: paused;
+        }
+        @keyframes ct-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .ct-tech-item {
+          display: flex;
+          flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 10px;
-          font-size: 22px;
-          font-weight: 700;
-          color: #94a3b8;
+          padding: 24px 44px;
+          border-right: 1px solid rgba(255,255,255,0.06);
+          min-width: 130px;
+          transition: background 0.3s;
+          cursor: default;
+        }
+        .ct-tech-item:hover {
+          background: rgba(56, 75, 255, 0.07);
+        }
+        .ct-tech-item img {
+          width: 38px;
+          height: 38px;
+          object-fit: contain;
+          filter: brightness(0.85) saturate(0.9);
+          transition: filter 0.3s, transform 0.3s;
+        }
+        .ct-tech-item:hover img {
+          filter: brightness(1) saturate(1);
+          transform: scale(1.12);
+        }
+        .ct-tech-item span {
+          font-size: 11px;
+          font-weight: 600;
+          color: rgba(255,255,255,0.55);
+          white-space: nowrap;
+          letter-spacing: 0.3px;
           transition: color 0.3s;
-          user-select: none;
         }
-        .ct-brand-item:hover {
-          color: #475569;
-        }
-        .ct-brand-item i {
-          font-size: 26px;
+        .ct-tech-item:hover span {
+          color: rgba(255,255,255,0.9);
         }
 
         /* Alert Status Styling */
@@ -891,17 +942,21 @@ export default function ContactContent() {
           </div>
         </section>
 
-        {/* Brands Banner Section */}
-        <section className="ct-brands-section">
-          <div className="container">
-            <div className="ct-brands-title">Trusted by exceptional brands around the world</div>
-            <div className="ct-brands-grid">
-              {brands.map((b, i) => (
-                <div key={i} className="ct-brand-item">
-                  <i className={`fa-brands ${b.icon}`}></i>
-                  <span>{b.name}</span>
-                </div>
-              ))}
+        {/* Next-Gen Tech Stack Strip */}
+        <section className="ct-tech-strip">
+          <div className="ct-tech-inner">
+            <div className="ct-tech-label">
+              <strong>Next-Generation<br />Development<br />Technologies</strong>
+            </div>
+            <div className="ct-tech-marquee-wrap">
+              <div className="ct-tech-marquee">
+                {[...techStack, ...techStack].map((tech, i) => (
+                  <div key={i} className="ct-tech-item">
+                    <img src={tech.logo} alt={tech.name} />
+                    <span>{tech.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
