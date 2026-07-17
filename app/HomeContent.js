@@ -254,8 +254,8 @@ export default function HomeContent() {
                                                         Explore More <i className="fa-solid fa-arrow-right-long"></i>
                                                     </a>
                                                     <span className="button-text wow fadeInUp" data-wow-delay=".9s">
-                                                        <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I"
-                                                            className="video-btn ripple video-popup">
+                                                        <a href="#"
+                                                            className="video-btn ripple">
                                                             <i className="fa-solid fa-play"></i>
                                                         </a>
                                                         <span className="ms-4 d-line"></span>
@@ -390,16 +390,20 @@ export default function HomeContent() {
                                                 <h3><span className="count">6,561 </span>+</h3>
                                             </div>
                                         </div>
-                                        <div className="video-box">
-                                            <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I"
-                                                className="video-buttton video-popup">
-                                                <i className="fa-solid fa-play"></i>
-
-                                                <img decoding="async" className="text-circle"
-                                                    src="wp-content/uploads/2024/04/circle-text.png"
-                                                    alt="" />
-                                            </a>
-                                        </div>
+                                         <div className="video-box">
+                                             <a href="#"
+                                                 className="video-buttton">
+                                                 <i className="fa-solid fa-play"></i>
+                                                 <svg viewBox="0 0 100 100" className="text-circle" width="122" height="122">
+                                                     <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                                                     <text fontFamily="'Kumbh Sans', sans-serif" fontSize="7" fontWeight="700" fill="#ffffff" letterSpacing="3.5">
+                                                         <textPath href="#circlePath">
+                                                             INFATOZ TECHNOLOGY • INFATOZ TECHNOLOGY • 
+                                                         </textPath>
+                                                     </text>
+                                                 </svg>
+                                             </a>
+                                         </div>
                                         <div className="about-image-1 bg-cover wow fadeInLeft" data-wow-delay=".3s"
                                             style={{backgroundImage: "url('/wp-content/uploads/2024/04/01.jpg')"}}>
                                             <div className="about-image-2 wow fadeInUp" data-wow-delay=".5s">
