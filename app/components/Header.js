@@ -474,6 +474,22 @@ export default function Header() {
           width: 930px;
         }
 
+        /* Reset all inherited general 'a' styling for elements inside mega dropdown */
+        .services-mega-dropdown a {
+          display: inline-block !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          text-align: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          color: inherit !important;
+          text-transform: none !important;
+          transition: none !important;
+        }
+        .services-mega-dropdown a:hover {
+          color: inherit !important;
+        }
+
         /* Left sidebar - categories */
         .dropdown-sidebar {
           width: 190px;
@@ -550,25 +566,31 @@ export default function Header() {
           box-sizing: border-box;
         }
 
-        .sidebar-cta-button {
-          display: block;
-          width: 100%;
-          background-color: #3757EA;
+        /* Specific high specificity override to center Get a Quote button */
+        .header-main .main-menu ul li .services-mega-dropdown .sidebar-cta-button {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 100% !important;
+          height: 42px !important;
+          background-color: #3757EA !important;
           color: #ffffff !important;
-          text-align: center;
-          padding: 10px 14px;
-          border-radius: 8px;
-          font-size: 13px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: background-color 0.2s ease;
-          font-family: 'Kumbh Sans', sans-serif;
-          border: none;
-          box-sizing: border-box;
+          text-align: center !important;
+          padding: 0 !important;
+          border-radius: 8px !important;
+          font-size: 13px !important;
+          font-weight: 700 !important;
+          text-decoration: none !important;
+          font-family: 'Kumbh Sans', sans-serif !important;
+          box-sizing: border-box !important;
+          text-transform: none !important;
+          border: none !important;
+          line-height: 1 !important;
         }
 
-        .sidebar-cta-button:hover {
-          background-color: #2745c2;
+        .header-main .main-menu ul li .services-mega-dropdown .sidebar-cta-button:hover {
+          background-color: #2745c2 !important;
+          color: #ffffff !important;
         }
 
         /* Right panel - items list */
@@ -616,25 +638,27 @@ export default function Header() {
           grid-template-columns: repeat(3, 1fr);
         }
 
-        /* Item Cards */
-        .dropdown-card {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 11px 12px;
-          background: #ffffff;
-          border: 0.5px solid rgba(56, 75, 255, 0.12);
-          border-radius: 10px;
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-          text-decoration: none;
-          box-sizing: border-box;
-          height: 100%;
+        /* Explicit high-specificity rule to override display block/vertical stack in cards */
+        .header-main .main-menu ul li .services-mega-dropdown .dropdown-card {
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          gap: 10px !important;
+          padding: 11px 12px !important;
+          background: #ffffff !important;
+          border: 0.5px solid rgba(56, 75, 255, 0.12) !important;
+          border-radius: 10px !important;
+          text-decoration: none !important;
+          box-sizing: border-box !important;
+          height: 100% !important;
+          text-align: left !important;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
 
-        .dropdown-card:hover {
+        .header-main .main-menu ul li .services-mega-dropdown .dropdown-card:hover {
           background-color: #E6F1FB !important;
           border-color: rgba(56, 75, 255, 0.3) !important;
-          transform: translateY(-1px);
+          transform: translateY(-1px) !important;
         }
 
         .dropdown-card .card-icon-block {
@@ -1096,7 +1120,7 @@ export default function Header() {
                                     href="/contact"
                                     className="sidebar-cta-button"
                                   >
-                                    Get a quote &nbsp;→
+                                    Get A Quote &nbsp;→
                                   </a>
                                 </div>
                               </div>
@@ -1117,7 +1141,7 @@ export default function Header() {
                                     <a
                                       key={`${activeCategory}-${idx}`}
                                       href={item.href}
-                                      className="dropdown-item dropdown-card"
+                                      className="dropdown-card"
                                       role="menuitem"
                                       onClick={() => setDropdownOpen(false)}
                                     >
