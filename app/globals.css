@@ -455,6 +455,28 @@ a {
   margin: 0;
 }
 
+/* =========================================
+   Testimonial Section - Explicit Background Fix
+   Ensures correct bg colors even when CSS variables from wp-content/themes 
+   aren't loaded yet (cache-busting scenario).
+   ========================================= */
+.testimonial-wrapper {
+  background-color: #F3F7FB !important;
+}
+
+.testimonial-section::before {
+  background-color: #18185E !important;
+}
+
+.testimonial-wrapper .testimonial-items .testimonial-content p,
+.testimonial-wrapper .testimonial-items .testimonial-content .author-details h5 {
+  color: #0F0D1D !important;
+}
+
+.testimonial-wrapper .testimonial-items .testimonial-content .author-details span {
+  color: #585858 !important;
+}
+
 /* Footer Bottom Social Links */
 .footer-social-link-bottom {
   width: 36px;
