@@ -48,10 +48,16 @@ const BASE_CSS = `
   .sp-btn-outline:hover{background:#384BFF;color:#fff}
 
   /* ── HERO ── */
-  .sp-hero{background:linear-gradient(130deg,#050b2e 0%,#0d1a6e 55%,#0b0f3d 100%);
-    position:relative;overflow:hidden;padding:140px 0 100px;text-align:center}
-  .sp-hero::before{content:'';position:absolute;inset:0;
-    background:radial-gradient(circle at 70% 50%,rgba(56,75,255,.25) 0%,transparent 60%)}
+  .sp-hero{position:relative;overflow:hidden;padding:150px 0 110px;text-align:center}
+  .sp-hero-bg-img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    object-position:center;z-index:0;transform:scale(1.04);}
+  .sp-hero-overlay{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(130deg,rgba(5,11,46,.92) 0%,rgba(13,26,110,.82) 55%,rgba(11,15,61,.90) 100%);}
+  .sp-hero-glow{
+    position:absolute;inset:0;z-index:1;
+    background:radial-gradient(circle at 65% 40%,rgba(56,75,255,.30) 0%,transparent 55%);}
   .sp-hero-inner{position:relative;z-index:2}
   .sp-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
     background:rgba(56,75,255,.18);border:1px solid rgba(56,75,255,.4);
@@ -319,6 +325,18 @@ export default function ServicePageTemplate({
 
       {/* ── HERO ── */}
       <section className="sp-hero">
+        {/* Relevant background image */}
+        <img
+          className="sp-hero-bg-img"
+          src={heroImg1}
+          alt=""
+          aria-hidden="true"
+        />
+        {/* Dark gradient overlay */}
+        <div className="sp-hero-overlay" />
+        {/* Blue radial glow */}
+        <div className="sp-hero-glow" />
+
         <div className="sp-hero-inner sp-container">
           <div className="sp-hero-eyebrow">
             {heroEyebrow}
