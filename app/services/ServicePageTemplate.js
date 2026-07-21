@@ -274,6 +274,96 @@ const BASE_CSS = `
   .sp-rel-body p{font-size:13px;color:#64748b;line-height:1.65;margin:0}
   .sp-rel-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;
     color:#384BFF;font-size:13px;font-weight:600}
+
+  /* ══════════════════════════════
+     MOBILE RESPONSIVE (≤768px)
+  ══════════════════════════════ */
+  @media(max-width:768px){
+    /* container */
+    .sp-container{padding:0 18px}
+
+    /* hero */
+    .sp-hero{padding:110px 0 70px}
+    .sp-hero h1{font-size:clamp(1.7rem,7vw,2.6rem);margin-bottom:16px}
+    .sp-hero-sub{font-size:15px;margin-bottom:28px;padding:0 8px}
+    .sp-hero-btns{flex-direction:column;align-items:center;gap:12px}
+    .sp-btn,.sp-btn-light{width:100%;max-width:320px;justify-content:center}
+    .sp-breadcrumb{flex-wrap:wrap;font-size:12px;gap:4px;padding:0 8px}
+
+    /* stats */
+    .sp-stats{padding:40px 0}
+    .sp-stats-grid{grid-template-columns:1fr 1fr;gap:16px;padding:0 18px !important}
+    .sp-stat-item{padding:20px 14px}
+    .sp-stat-num{font-size:2rem}
+
+    /* overview */
+    .sp-overview{padding:60px 0}
+    .sp-overview-grid{grid-template-columns:1fr;gap:32px}
+    .sp-img-stack{display:none}
+    .sp-overview-list li{font-size:14px}
+    .sp-section-desc{font-size:15px}
+    .sp-section-title{font-size:clamp(1.5rem,5.5vw,2rem)}
+
+    /* features */
+    .sp-features{padding:60px 0}
+    .sp-features-grid{grid-template-columns:1fr;gap:16px}
+    .sp-features-header{margin-bottom:32px}
+    .sp-feat-card{padding:24px}
+
+    /* process */
+    .sp-process{padding:60px 0}
+    .sp-steps{grid-template-columns:1fr;gap:16px}
+    .sp-step{padding:24px 20px}
+    .sp-step p{max-width:100%}
+
+    /* tech */
+    .sp-tech{padding:60px 0}
+    .sp-tech-header{margin-bottom:32px}
+    .sp-tech-pills{gap:8px}
+    .sp-tech-pill{padding:8px 16px;font-size:13px}
+    .sp-tech-pill img{width:18px;height:18px}
+
+    /* faq */
+    .sp-faq{padding:60px 0}
+    .sp-faq-header{margin-bottom:36px}
+    .sp-faq-list{max-width:100%}
+    .sp-faq-q{padding:18px 16px 18px 22px}
+    .sp-faq-q h4{font-size:15px}
+    .sp-faq-a{padding:0 16px 0 22px}
+    .sp-faq-item.open .sp-faq-a{padding-bottom:18px}
+
+    /* cta */
+    .sp-cta{padding:60px 0}
+    .sp-cta-inner h2{font-size:clamp(1.6rem,5.5vw,2.2rem)}
+    .sp-cta-inner p{font-size:15px;margin-bottom:28px;padding:0 8px}
+    .sp-cta-btns{flex-direction:column;align-items:center;gap:12px}
+    .sp-btn-white,.sp-btn-ghost{width:100%;max-width:320px;justify-content:center}
+
+    /* related */
+    .sp-related{padding:60px 0}
+    .sp-related-grid{grid-template-columns:1fr;gap:20px}
+    .sp-related-header{margin-bottom:32px}
+  }
+
+  /* ══════════════════════════════
+     EXTRA SMALL (≤480px)
+  ══════════════════════════════ */
+  @media(max-width:480px){
+    .sp-container{padding:0 14px}
+    .sp-hero{padding:100px 0 60px}
+    .sp-hero h1{font-size:clamp(1.5rem,8vw,2rem)}
+    .sp-hero-eyebrow{font-size:10px;padding:5px 14px}
+    .sp-stats-grid{grid-template-columns:1fr 1fr;gap:12px;padding:0 14px !important}
+    .sp-stat-num{font-size:1.7rem}
+    .sp-stat-label{font-size:11px}
+    .sp-overview-grid{gap:24px}
+    .sp-features-grid{grid-template-columns:1fr}
+    .sp-feat-card{padding:20px 16px}
+    .sp-feat-icon-wrap{width:48px;height:48px}
+    .sp-faq-q h4{font-size:14px}
+    .sp-cta-inner h2{font-size:1.5rem}
+    .sp-tech-pills{justify-content:flex-start}
+  }
 `;
 
 /* ── SVG icon set ── */

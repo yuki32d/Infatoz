@@ -813,11 +813,29 @@ export default function Header() {
           cursor: pointer;
           padding: 8px;
           margin-left: 12px;
+          align-items: center;
+          justify-content: center;
         }
         @media (max-width: 991px) {
           .hamburger-btn { display: flex; }
           .mean__menu-wrapper { display: none !important; }
           .consult-btn-wrapper { display: none !important; }
+        }
+
+        /* ── Mobile global fixes ── */
+        @media (max-width: 991px) {
+          /* hide top info bar */
+          .header-top-section { display: none !important; }
+          /* compact header */
+          .header-1 .container-fluid { padding: 0 16px; }
+          .header-main { padding: 10px 0; }
+          /* logo size */
+          .site-logo img { max-height: 34px; }
+          /* prevent body scroll when drawer open */
+          body.drawer-open { overflow: hidden; }
+        }
+        @media (max-width: 480px) {
+          .mobile-nav-drawer { width: 100%; }
         }
       `}</style>
 
@@ -858,8 +876,8 @@ export default function Header() {
           </button>
         </div>
 
-        <a href="/" className="mobile-nav-link">Home</a>
-        <a href="/about" className="mobile-nav-link">About Us</a>
+        <a href="/" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Home</a>
+        <a href="/about" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>About Us</a>
 
         {/* Mobile Services Accordion */}
         <button
@@ -880,7 +898,7 @@ export default function Header() {
         </button>
         <div className={`mobile-services-list${mobileServicesOpen ? ' open' : ''}`}>
           {services.map((s, i) => (
-            <a key={i} href={s.href} className="mobile-service-item">
+            <a key={i} href={s.href} className="mobile-service-item" onClick={() => setMobileMenuOpen(false)}>
               <span className="mobile-icon-span">{s.icon}</span>
               {s.label}
             </a>
@@ -906,7 +924,7 @@ export default function Header() {
         </button>
         <div className={`mobile-services-list${mobileIndustriesOpen ? ' open' : ''}`}>
           {industries.map((ind, i) => (
-            <a key={i} href={ind.href} className="mobile-service-item">
+            <a key={i} href={ind.href} className="mobile-service-item" onClick={() => setMobileMenuOpen(false)}>
               <span className="mobile-icon-span">{ind.icon}</span>
               <span style={{ display: 'inline-flex', flexDirection: 'column' }}>
                 <span style={{ fontWeight: '600' }}>{ind.label}</span>
@@ -916,14 +934,15 @@ export default function Header() {
           ))}
         </div>
 
-        <a href="#" className="mobile-nav-link">Pages</a>
-        <a href="#" className="mobile-nav-link">Blog</a>
-        <a href="/contact" className="mobile-nav-link">Contact</a>
+        <a href="#" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Pages</a>
+        <a href="#" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Blog</a>
+        <a href="/contact" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Contact</a>
 
         <Link
           href="/contact"
           className="consult-btn"
-          style={{ display: 'inline-block', marginTop: 24, width: '100%', textAlign: 'center' }}
+          style={{ display: 'block', marginTop: 24, width: '100%', textAlign: 'center', boxSizing: 'border-box' }}
+          onClick={() => setMobileMenuOpen(false)}
         >
           Consultations
         </Link>
