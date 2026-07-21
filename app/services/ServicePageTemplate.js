@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -7,6 +7,25 @@ import Footer from '../components/Footer';
    Shared styles — injected once inside every service page
 ───────────────────────────────────────────────────────── */
 const BASE_CSS = `
+  /* ── scroll reveal keyframes ── */
+  @keyframes sp-fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes sp-fadeInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes sp-fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes sp-zoomIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+
+  /* ── scroll reveal base: elements start hidden ── */
+  .sr-up,.sr-left,.sr-right,.sr-zoom{
+    opacity:0;will-change:opacity,transform;
+  }
+  .sr-up.sr-visible{animation:sp-fadeInUp 0.7s cubic-bezier(.22,1,.36,1) both}
+  .sr-left.sr-visible{animation:sp-fadeInLeft 0.7s cubic-bezier(.22,1,.36,1) both}
+  .sr-right.sr-visible{animation:sp-fadeInRight 0.7s cubic-bezier(.22,1,.36,1) both}
+  .sr-zoom.sr-visible{animation:sp-zoomIn 0.65s cubic-bezier(.22,1,.36,1) both}
+
+  /* delay helpers */
+  .sr-d1{animation-delay:.1s}.sr-d2{animation-delay:.2s}.sr-d3{animation-delay:.3s}
+  .sr-d4{animation-delay:.4s}.sr-d5{animation-delay:.5s}.sr-d6{animation-delay:.6s}
+
   /* ── reset / container ── */
   .sp-wrap *{box-sizing:border-box;margin:0;padding:0}
   .sp-container{max-width:1200px;margin:0 auto;padding:0 24px}
@@ -261,10 +280,42 @@ export default function ServicePageTemplate({
   /* related */
   related,
 }) {
+  // ── Initialize WOW.js (for footer animations) + scroll reveal ──
+  useEffect(() => {
+    // 1. WOW.js for footer fadeInUp classes
+    const tryWow = () => {
+      if (window.WOW) {
+        try { new window.WOW({ offset: 80, mobile: false }).init(); } catch(e) {}
+      }
+    };
+    if (window.WOW) { tryWow(); }
+    else {
+      const iv = setInterval(() => { if (window.WOW) { clearInterval(iv); tryWow(); } }, 80);
+      return () => clearInterval(iv);
+    }
+  }, []);
+
+  useEffect(() => {
+    // 2. Native IntersectionObserver scroll-reveal for .sr-up/.sr-left/.sr-right/.sr-zoom
+    const targets = document.querySelectorAll('.sr-up,.sr-left,.sr-right,.sr-zoom');
+    if (!targets.length) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sr-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div className="sp-wrap" suppressHydrationWarning>
       <style>{BASE_CSS}</style>
       <Header />
+
 
       {/* ── HERO ── */}
       <section className="sp-hero">
@@ -291,7 +342,7 @@ export default function ServicePageTemplate({
       <section className="sp-stats">
         <div className="sp-stats-grid sp-container" style={{padding:0}}>
           {stats.map((s, i) => (
-            <div key={i} className="sp-stat-item">
+            <div key={i} className={`sp-stat-item sr-up sr-d${i+1}`}>
               <div className="sp-stat-num">{s.num}</div>
               <div className="sp-stat-label">{s.label}</div>
             </div>
@@ -304,7 +355,7 @@ export default function ServicePageTemplate({
         <div className="sp-container">
           <div className="sp-overview-grid">
             {/* Image stack */}
-            <div className="sp-img-stack">
+            <div className="sp-img-stack sr-left">
               <img className="sp-img-main" src={heroImg1} alt={heroTitle} />
               <img className="sp-img-overlay" src={heroImg2} alt="Service detail" />
               <div className="sp-badge">
@@ -315,7 +366,7 @@ export default function ServicePageTemplate({
               </div>
             </div>
             {/* Text */}
-            <div>
+            <div className="sr-right">
               <span className="sp-eyebrow">{overviewEyebrow}</span>
               <h2 className="sp-section-title">{overviewTitle} <span>{overviewHighlight}</span></h2>
               <p className="sp-section-desc">{overviewDesc}</p>
@@ -336,7 +387,7 @@ export default function ServicePageTemplate({
       {/* ── FEATURES ── */}
       <section className="sp-features">
         <div className="sp-container">
-          <div className="sp-features-header">
+          <div className="sp-features-header sr-up">
             <span className="sp-eyebrow">KEY FEATURES</span>
             <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>
               What Sets Our <span>{features[0] ? features[0].sectionHighlight || 'Services' : 'Services'}</span> Apart
@@ -344,7 +395,7 @@ export default function ServicePageTemplate({
           </div>
           <div className="sp-features-grid">
             {features.map((f, i) => (
-              <div key={i} className="sp-feat-card">
+              <div key={i} className={`sp-feat-card sr-up sr-d${(i%3)+1}`}>
                 <div className="sp-feat-icon-wrap">
                   <span style={{display:'inline-flex',width:28,height:28}}>{Icon[f.icon] || Icon.star}</span>
                 </div>
@@ -359,13 +410,13 @@ export default function ServicePageTemplate({
       {/* ── PROCESS ── */}
       <section className="sp-process">
         <div className="sp-container">
-          <div className="sp-process-header">
+          <div className="sp-process-header sr-up">
             <span className="sp-eyebrow">OUR PROCESS</span>
             <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{processTitle}</h2>
           </div>
           <div className="sp-steps">
             {processSteps.map((s, i) => (
-              <div key={i} className="sp-step">
+              <div key={i} className={`sp-step sr-zoom sr-d${i+1}`}>
                 <div className="sp-step-num">{String(i + 1).padStart(2, '0')}</div>
                 <h4>{s.title}</h4>
                 <p>{s.desc}</p>
@@ -378,11 +429,11 @@ export default function ServicePageTemplate({
       {/* ── TECH ── */}
       <section className="sp-tech">
         <div className="sp-container">
-          <div className="sp-tech-header">
+          <div className="sp-tech-header sr-up">
             <span className="sp-eyebrow">TECHNOLOGIES</span>
             <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{techTitle}</h2>
           </div>
-          <div className="sp-tech-pills">
+          <div className="sp-tech-pills sr-up sr-d2">
             {techStack.map((t, i) => (
               <div key={i} className="sp-tech-pill">
                 {t.logo && <img src={t.logo} alt={t.name} />}
@@ -396,11 +447,11 @@ export default function ServicePageTemplate({
       {/* ── FAQ ── */}
       <section className="sp-faq">
         <div className="sp-container">
-          <div className="sp-faq-header">
+          <div className="sp-faq-header sr-up">
             <span className="sp-eyebrow">FAQ</span>
             <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{faqTitle}</h2>
           </div>
-          <div className="sp-faq-list">
+          <div className="sp-faq-list sr-up sr-d2">
             {faqs.map((f, i) => <FaqItem key={i} q={f.q} a={f.a} />)}
           </div>
         </div>
@@ -408,7 +459,7 @@ export default function ServicePageTemplate({
 
       {/* ── CTA BANNER ── */}
       <section className="sp-cta">
-        <div className="sp-container sp-cta-inner">
+        <div className="sp-container sp-cta-inner sr-up">
           <span className="sp-hero-eyebrow" style={{marginBottom:20,display:'inline-block'}}>
             <span style={{width:6,height:6,borderRadius:'50%',background:'#818cf8',display:'inline-block'}}/>
             &nbsp;Ready to Transform Your Business?
@@ -426,13 +477,13 @@ export default function ServicePageTemplate({
       {related && related.length > 0 && (
         <section className="sp-related">
           <div className="sp-container">
-            <div className="sp-related-header">
+            <div className="sp-related-header sr-up">
               <span className="sp-eyebrow">EXPLORE MORE</span>
               <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>Related <span>Services</span></h2>
             </div>
             <div className="sp-related-grid">
               {related.map((r, i) => (
-                <a key={i} href={r.href} className="sp-rel-card">
+                <a key={i} href={r.href} className={`sp-rel-card sr-up sr-d${i+1}`}>
                   <div style={{overflow:'hidden'}}>
                     <img className="sp-rel-img" src={r.img} alt={r.title} />
                   </div>
