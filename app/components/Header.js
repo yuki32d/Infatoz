@@ -220,52 +220,52 @@ const services = [
   {
     icon: <IconGlobe />,
     label: 'Web Design & CMS Development Services',
-    href: '#',
+    href: '/services/web-design-cms',
   },
   {
     icon: <IconCode />,
     label: 'Custom Web Application Development',
-    href: '#',
+    href: '/services/custom-web-applications',
   },
   {
     icon: <IconSmartphone />,
     label: 'Mobile App Development',
-    href: '#',
+    href: '/services/mobile-app-development',
   },
   {
     icon: <IconCpu />,
     label: 'ERP Software & Business Automation Systems',
-    href: '#',
+    href: '/services/erp-business-automation',
   },
   {
     icon: <IconShoppingCart />,
     label: 'E-commerce Development',
-    href: '#',
+    href: '/services/ecommerce-development',
   },
   {
     icon: <IconPenTool />,
     label: 'UI/UX Design & Branding',
-    href: '#',
+    href: '/services/ui-ux-design-branding',
   },
   {
     icon: <IconTrendingUp />,
     label: 'Digital Marketing & Growth Services',
-    href: '#',
+    href: '/services/digital-marketing',
   },
   {
     icon: <IconBrain />,
     label: 'AI Application Development & Automation',
-    href: '#',
+    href: '/services/ai-application-automation',
   },
   {
     icon: <IconCloud />,
     label: 'Cloud Application Development & Maintenance',
-    href: '#',
+    href: '/services/cloud-application-maintenance',
   },
   {
     icon: <IconDatabase />,
     label: 'Data Management & Migration',
-    href: '#',
+    href: '/services/data-management-migration',
   },
 ];
 
