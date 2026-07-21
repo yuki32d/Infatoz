@@ -166,24 +166,78 @@ const BASE_CSS = `
   .sp-tech-pill img{width:22px;height:22px;object-fit:contain}
 
   /* ── FAQ ── */
-  .sp-faq{padding:100px 0;background:#fff}
+  .sp-faq{padding:100px 0;background:#f4f6fb}
   .sp-faq-header{text-align:center;margin-bottom:60px}
-  .sp-faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-  .sp-faq-item{border:1px solid #e8ecf4;border-radius:14px;overflow:hidden;
-    transition:border-color .25s}
-  .sp-faq-item.open{border-color:#384BFF}
-  .sp-faq-q{display:flex;justify-content:space-between;align-items:center;
-    padding:22px 28px;cursor:pointer;background:#fff;transition:background .2s}
-  .sp-faq-item.open .sp-faq-q{background:#f8faff}
-  .sp-faq-q h4{font-size:16px;font-weight:600;color:#0F0D1D;margin:0;flex:1;
-    padding-right:16px;line-height:1.4}
-  .sp-faq-toggle{width:36px;height:36px;border-radius:50%;background:#EEF1FF;
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-    transition:all .3s;color:#384BFF;font-weight:700;font-size:20px}
-  .sp-faq-item.open .sp-faq-toggle{background:#384BFF;color:#fff;transform:rotate(45deg)}
-  .sp-faq-a{padding:0 28px;max-height:0;overflow:hidden;transition:all .35s ease}
-  .sp-faq-item.open .sp-faq-a{max-height:300px;padding-bottom:22px}
-  .sp-faq-a p{font-size:15px;color:#64748b;line-height:1.8;margin:0}
+  .sp-faq-list{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+
+  /* card */
+  .sp-faq-item{
+    background:#fff;
+    border:1px solid #dde3f0;
+    border-radius:4px;
+    overflow:hidden;
+    position:relative;
+    transition:box-shadow .25s;
+  }
+  .sp-faq-item:hover{box-shadow:0 6px 28px rgba(56,75,255,.10)}
+
+  /* left blue accent bar */
+  .sp-faq-item::before{
+    content:'';
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:5px;
+    background:#384BFF;
+    border-radius:4px 0 0 4px;
+    opacity:0;
+    transition:opacity .25s;
+  }
+  .sp-faq-item.open::before{opacity:1}
+
+  /* question row */
+  .sp-faq-q{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 28px 22px 32px;
+    cursor:pointer;
+    background:#fff;
+    transition:background .2s;
+    user-select:none;
+  }
+  .sp-faq-item.open .sp-faq-q{background:#f0f3ff}
+  .sp-faq-q h4{
+    font-size:17px;
+    font-weight:700;
+    color:#0F0D1D;
+    margin:0;
+    flex:1;
+    padding-right:20px;
+    line-height:1.4;
+    transition:color .2s;
+  }
+  .sp-faq-item.open .sp-faq-q h4{color:#384BFF}
+
+  /* » icon */
+  .sp-faq-toggle{
+    font-size:22px;
+    font-weight:800;
+    color:#0F0D1D;
+    line-height:1;
+    flex-shrink:0;
+    transition:transform .3s,color .2s;
+    font-family:serif;
+    letter-spacing:-3px;
+  }
+  .sp-faq-item.open .sp-faq-toggle{
+    transform:rotate(90deg);
+    color:#384BFF;
+  }
+
+  /* answer panel */
+  .sp-faq-a{padding:0 28px 0 32px;max-height:0;overflow:hidden;transition:all .38s cubic-bezier(.4,0,.2,1)}
+  .sp-faq-item.open .sp-faq-a{max-height:400px;padding-bottom:24px;padding-top:4px}
+  .sp-faq-a p{font-size:15px;color:#475569;line-height:1.8;margin:0}
 
   /* ── CTA BANNER ── */
   .sp-cta{background:linear-gradient(120deg,#0a0f3d 0%,#1a237e 55%,#0d1554 100%);
@@ -254,10 +308,16 @@ function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false);
   return (
     <div className={`sp-faq-item${open ? ' open' : ''}`}>
-      <div className="sp-faq-q" onClick={() => setOpen(!open)} role="button" tabIndex={0}
-        onKeyDown={e => e.key === 'Enter' && setOpen(!open)}>
+      <div
+        className="sp-faq-q"
+        onClick={() => setOpen(!open)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => e.key === 'Enter' && setOpen(!open)}
+        aria-expanded={open}
+      >
         <h4>{q}</h4>
-        <div className="sp-faq-toggle">+</div>
+        <span className="sp-faq-toggle" aria-hidden="true">&raquo;</span>
       </div>
       <div className="sp-faq-a"><p>{a}</p></div>
     </div>
