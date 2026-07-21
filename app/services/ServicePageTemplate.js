@@ -321,7 +321,6 @@ export default function ServicePageTemplate({
       <section className="sp-hero">
         <div className="sp-hero-inner sp-container">
           <div className="sp-hero-eyebrow">
-            <span style={{width:6,height:6,borderRadius:'50%',background:'#818cf8',display:'inline-block'}}/>
             {heroEyebrow}
           </div>
           <h1>{heroTitle} {heroHighlight && <span>{heroHighlight}</span>}</h1>
@@ -461,7 +460,6 @@ export default function ServicePageTemplate({
       <section className="sp-cta">
         <div className="sp-container sp-cta-inner sr-up">
           <span className="sp-hero-eyebrow" style={{marginBottom:20,display:'inline-block'}}>
-            <span style={{width:6,height:6,borderRadius:'50%',background:'#818cf8',display:'inline-block'}}/>
             &nbsp;Ready to Transform Your Business?
           </span>
           <h2>Let's Build Something <span style={{color:'#818cf8'}}>Extraordinary</span> Together</h2>
