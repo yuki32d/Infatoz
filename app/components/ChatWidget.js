@@ -1,30 +1,47 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import {
+  MessageCircle,
+  X,
+  ArrowLeft,
+  Search,
+  ChevronRight,
+  ChevronDown,
+  Send,
+  Home,
+  MessageSquare,
+  HelpCircle,
+  Layers,
+  GitBranch,
+  Bot,
+  Tag,
+  ShieldCheck,
+} from 'lucide-react';
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasUnread, setHasUnread] = useState(true);
   const [activeTab, setActiveTab] = useState('home'); // 'home' | 'messages' | 'help' | 'chat'
   const [searchQuery, setSearchQuery] = useState('');
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: 'bot',
-      name: 'James from Infatoz',
-      text: 'Hi there,\n\nThank you for reaching out to Infatoz Technologies!\n\nWe work through our queue on a first-come, first-served basis. One of our software experts will be with you right here in this thread as quickly as we can.\n\nWhat kind of solution or service are you looking for today?',
+      text: 'Hi there 👋 How can we help?\n\nWe work first-come, first-served, and an engineer usually jumps into this thread within minutes.\n\nWhat are you building?',
       time: 'Just now',
     },
   ]);
   const [inputMsg, setInputMsg] = useState('');
   const [selectedFaq, setSelectedFaq] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll chat to bottom
   useEffect(() => {
     if (activeTab === 'chat') {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, activeTab]);
+  }, [messages, activeTab, isTyping]);
 
   const faqs = [
     {
@@ -42,22 +59,26 @@ export default function ChatWidget() {
       q: 'How long does a typical project take?',
       a: 'Websites and CMS platforms take 2–5 weeks. Custom web applications and mobile apps take 6–12 weeks. ERPs and complex AI automation systems take 8–16 weeks.',
     },
-    {
-      id: 4,
-      q: 'Do you offer ongoing post-launch maintenance?',
-      a: 'Yes! We offer monthly SLA support packages that cover 24/7 server monitoring, security vulnerability updates, feature enhancements, and database backups.',
-    },
-    {
-      id: 5,
-      q: 'Can you build custom AI models or integrate OpenAI/Claude?',
-      a: 'Absolutely. We specialize in custom LLM integration, AI chatbots, automated document processing, and predictive analytics pipelines integrated into your existing software.',
-    },
   ];
 
-  const filteredFaqs = faqs.filter(f =>
-    f.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    f.a.toLowerCase().includes(searchQuery.toLowerCase())
+  const collections = [
+    { title: 'Services & Solutions', count: '10 articles', icon: Layers },
+    { title: 'Project Process & Sprints', count: '6 articles', icon: GitBranch },
+    { title: 'Custom AI & Automation', count: '8 articles', icon: Bot },
+    { title: 'Pricing & Fixed Estimates', count: '4 articles', icon: Tag },
+    { title: 'Company & Security', count: '3 articles', icon: ShieldCheck },
+  ];
+
+  const filteredFaqs = faqs.filter(
+    (f) =>
+      f.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      f.a.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleOpen = () => {
+    setIsOpen(true);
+    setHasUnread(false);
+  };
 
   const handleSendMessage = (textToSend) => {
     const text = textToSend || inputMsg;
@@ -70,577 +91,695 @@ export default function ChatWidget() {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
-    setMessages(prev => [...prev, userMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     if (!textToSend) setInputMsg('');
     setActiveTab('chat');
+    setIsTyping(true);
 
-    // Auto bot response after 1 second
     setTimeout(() => {
+      setIsTyping(false);
       const botReply = {
         id: Date.now() + 1,
         sender: 'bot',
-        name: 'Infatoz Assistant',
-        text: `Thanks for your message! Our team has received your inquiry: "${text.trim()}". A technical consultant will respond shortly. You can also reach us directly at info@infatoz.com or +91 7019058591.`,
+        text: `Got it. An engineer will pick this up shortly. For anything urgent, reach us directly at info@infatoz.com.`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
-      setMessages(prev => [...prev, botReply]);
-    }, 1200);
+      setMessages((prev) => [...prev, botReply]);
+    }, 1400);
   };
 
   return (
     <>
-      <style jsx global>{`
-        /* Chat Widget Container */
-        .cw-floating-trigger {
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&display=swap');
+
+        :root {
+          --ifz-blue: #384BFF;
+          --ifz-blue-hover: #2a3ce0;
+          --ifz-navy: #0F0D1D;
+          --ifz-white: #ffffff;
+          --ifz-bg-light: #f8faff;
+          --ifz-surface-hover: #f4f6fb;
+          --ifz-border: #e8ecf4;
+          --ifz-text-dark: #0F0D1D;
+          --ifz-text-muted: #64748b;
+          --ifz-text-subtle: #94a3b8;
+          --font-primary: 'Kumbh Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Base Animations */
+        @keyframes fade-in-up { 
+          from { opacity: 0; transform: translateY(12px); } 
+          to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes scale-in { 
+          from { opacity: 0; transform: scale(0.96) translateY(12px); } 
+          to { opacity: 1; transform: scale(1) translateY(0); } 
+        }
+        
+        /* Floating Action Button */
+        .ifz-fab {
           position: fixed;
           bottom: 24px;
           right: 24px;
-          width: 58px;
-          height: 58px;
+          width: 56px;
+          height: 56px;
           border-radius: 50%;
-          background: #384BFF;
-          color: #ffffff;
           border: none;
-          box-shadow: 0 8px 24px rgba(56, 75, 255, 0.4);
           cursor: pointer;
           z-index: 99999;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
+          background: var(--ifz-blue);
+          color: var(--ifz-white);
+          box-shadow: 0 4px 16px rgba(56, 75, 255, 0.3);
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s;
         }
-        .cw-floating-trigger:hover {
-          transform: scale(1.08);
-          background: #2a3ce0;
+        .ifz-fab:hover {
+          transform: scale(1.05);
+          background: var(--ifz-blue-hover);
+        }
+        .ifz-fab:active { transform: scale(0.95); }
+        .ifz-fab-badge {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #ef4444;
+          border: 2px solid var(--ifz-white);
         }
 
-        .cw-popup-card {
+        /* Widget Container */
+        .ifz-card {
           position: fixed;
-          bottom: 94px;
+          bottom: 96px;
           right: 24px;
           width: 380px;
-          max-width: calc(100vw - 32px);
-          height: 580px;
+          height: 640px;
           max-height: calc(100vh - 120px);
-          background: #ffffff;
+          max-width: calc(100vw - 32px);
+          background: var(--ifz-white);
           border-radius: 20px;
-          box-shadow: 0 16px 48px rgba(15, 13, 29, 0.18);
-          border: 1px solid rgba(0, 0, 0, 0.06);
+          overflow: hidden;
+          box-shadow: 0 12px 40px rgba(15, 13, 29, 0.12), 0 4px 12px rgba(15, 13, 29, 0.04);
           z-index: 99998;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
-          font-family: 'Kumbh Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-          animation: cwSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          font-family: var(--font-primary);
+          color: var(--ifz-text-dark);
+          animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          border: 1px solid var(--ifz-border);
         }
 
-        @keyframes cwSlideUp {
-          from { opacity: 0; transform: translateY(20px) scale(0.96); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Top Header */
-        .cw-header {
-          padding: 20px 22px 14px;
-          background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
-          border-bottom: 1px solid rgba(0,0,0,0.04);
+        /* Header */
+        .ifz-header {
+          padding: 24px 20px 20px;
+          background: var(--ifz-navy);
+          color: var(--ifz-white);
+          flex-shrink: 0;
           display: flex;
           align-items: center;
           justify-content: space-between;
         }
-        .cw-brand-block {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .cw-brand-logo {
-          font-weight: 800;
+        .ifz-brand {
           font-size: 20px;
-          color: #0F0D1D;
-          letter-spacing: -0.5px;
+          font-weight: 700;
+          letter-spacing: -0.02em;
         }
-        .cw-avatars-group {
+        .ifz-status {
+          font-size: 13px;
+          color: #cbd5e1;
+          margin-top: 2px;
           display: flex;
           align-items: center;
-          margin-left: 12px;
+          gap: 6px;
         }
-        .cw-avatar-pill {
-          width: 28px;
-          height: 28px;
+        .ifz-status-dot {
+          width: 8px;
+          height: 8px;
+          background: #10b981;
           border-radius: 50%;
-          border: 2px solid #fff;
-          background: #384BFF;
-          color: #fff;
-          font-size: 11px;
-          font-weight: 700;
+        }
+        
+        .ifz-chat-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .ifz-avatar {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: var(--ifz-blue);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-left: -8px;
+          font-weight: 600;
+          font-size: 14px;
         }
-        .cw-avatar-pill:first-child { margin-left: 0; }
-        .cw-close-btn {
-          background: none;
-          border: none;
-          color: #64748b;
-          font-size: 18px;
-          cursor: pointer;
-          padding: 4px;
-          transition: color 0.15s;
-        }
-        .cw-close-btn:hover { color: #0F0D1D; }
 
-        /* Content Area */
-        .cw-body-scroll {
+        .ifz-icon-btn {
+          background: transparent;
+          border: none;
+          color: var(--ifz-text-subtle);
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s, color 0.2s;
+        }
+        .ifz-icon-btn:hover {
+          background: var(--ifz-surface-hover);
+          color: var(--ifz-text-dark);
+        }
+        .ifz-header .ifz-icon-btn {
+          color: #94a3b8;
+        }
+        .ifz-header .ifz-icon-btn:hover {
+          background: rgba(255,255,255,0.1);
+          color: var(--ifz-white);
+        }
+
+        /* Body Area */
+        .ifz-body {
           flex: 1;
           overflow-y: auto;
-          padding: 20px 22px;
-          background: #fdfdfe;
+          background: var(--ifz-bg-light);
+          padding: 24px 20px;
         }
-
-        /* Greeting Section */
-        .cw-greeting {
-          margin-bottom: 20px;
+        .ifz-body::-webkit-scrollbar { width: 6px; }
+        .ifz-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
+        /* Home Tab */
+        .ifz-greeting {
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 24px;
+          letter-spacing: -0.02em;
+          animation: fade-in-up 0.4s ease-out;
         }
-        .cw-greeting-title {
-          font-size: 24px;
-          font-weight: 800;
-          color: #0F0D1D;
-          line-height: 1.25;
-          margin-bottom: 4px;
-        }
-
-        /* Action Cards */
-        .cw-action-card {
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
-          border-radius: 14px;
-          padding: 16px 18px;
-          margin-bottom: 14px;
-          cursor: pointer;
+        
+        .ifz-card-action {
+          background: var(--ifz-white);
+          border-radius: 12px;
+          padding: 16px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          gap: 14px;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(15, 13, 29, 0.04);
+          border: 1px solid var(--ifz-border);
           transition: all 0.2s ease;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+          animation: fade-in-up 0.4s ease-out 0.05s both;
+          margin-bottom: 32px;
         }
-        .cw-action-card:hover {
-          border-color: #384BFF;
-          box-shadow: 0 6px 18px rgba(56, 75, 255, 0.1);
-          transform: translateY(-1px);
+        .ifz-card-action:hover {
+          border-color: var(--ifz-blue);
+          box-shadow: 0 4px 12px rgba(56, 75, 255, 0.08);
         }
-        .cw-action-card-text {
+        .ifz-card-action-icon {
+          color: var(--ifz-blue);
+        }
+        .ifz-card-action-title {
+          font-weight: 600;
           font-size: 15px;
-          font-weight: 700;
-          color: #384BFF;
+        }
+        .ifz-card-action-sub {
+          font-size: 13px;
+          color: var(--ifz-text-muted);
+          margin-top: 2px;
         }
 
-        /* Search Input Box */
-        .cw-search-wrap {
+        /* Search Input */
+        .ifz-search-wrap {
           position: relative;
-          margin-bottom: 14px;
+          margin-bottom: 16px;
         }
-        .cw-search-input {
+        .ifz-search-input {
           width: 100%;
-          padding: 12px 40px 12px 16px;
-          background: #f1f5f9;
-          border: 1px solid transparent;
-          border-radius: 12px;
-          font-size: 14px;
-          color: #0f172a;
+          padding: 14px 16px 14px 42px;
+          background: var(--ifz-white);
+          border: 1px solid var(--ifz-border);
+          border-radius: 8px;
+          font-size: 15px;
+          font-family: var(--font-primary);
           outline: none;
-          transition: all 0.2s;
+          transition: border-color 0.2s, box-shadow 0.2s;
+          box-sizing: border-box;
         }
-        .cw-search-input:focus {
-          background: #fff;
-          border-color: #384BFF;
-          box-shadow: 0 0 0 3px rgba(56, 75, 255, 0.12);
+        .ifz-search-input:focus {
+          border-color: var(--ifz-blue);
+          box-shadow: 0 0 0 3px rgba(56, 75, 255, 0.1);
         }
-        .cw-search-icon {
+        .ifz-search-icon {
           position: absolute;
-          right: 14px;
+          left: 14px;
           top: 50%;
           transform: translateY(-50%);
-          color: #384BFF;
-          pointer-events: none;
+          color: var(--ifz-text-subtle);
         }
 
-        /* FAQ Item List */
-        .cw-faq-item {
-          padding: 14px 16px;
-          border-radius: 10px;
-          border-bottom: 1px solid #f1f5f9;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          cursor: pointer;
-          transition: background 0.15s;
-        }
-        .cw-faq-item:hover {
-          background: #f8fafc;
-        }
-        .cw-faq-qtext {
-          font-size: 14px;
+        /* FAQ Accordion */
+        .ifz-faq-section-title {
+          font-size: 13px;
           font-weight: 600;
-          color: #334155;
-          padding-right: 12px;
+          color: var(--ifz-text-subtle);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 12px;
+        }
+        .ifz-faq-item {
+          background: var(--ifz-white);
+          border: 1px solid var(--ifz-border);
+          border-radius: 8px;
+          margin-bottom: 8px;
+          overflow: hidden;
+          transition: background 0.2s;
+        }
+        .ifz-faq-item:hover {
+          background: var(--ifz-surface-hover);
+        }
+        .ifz-faq-head {
+          padding: 14px 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          font-weight: 500;
+          font-size: 14px;
+          color: var(--ifz-text-dark);
+        }
+        .ifz-faq-answer {
+          padding: 0 16px 16px;
+          font-size: 14px;
+          color: var(--ifz-text-muted);
+          line-height: 1.6;
+        }
+        .ifz-faq-chevron {
+          color: var(--ifz-text-subtle);
+          transition: transform 0.2s;
+        }
+        .ifz-faq-chevron.open {
+          transform: rotate(180deg);
         }
 
-        /* Chat Threads */
-        .cw-msg-bubble {
+        /* Chat Messages */
+        .ifz-chat-container {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .ifz-msg-row {
+          display: flex;
+          animation: fade-in-up 0.3s ease-out both;
+        }
+        .ifz-msg-row.user { justify-content: flex-end; }
+        .ifz-msg-col {
           max-width: 85%;
-          padding: 14px 16px;
-          border-radius: 16px;
-          font-size: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .ifz-msg-row.user .ifz-msg-col { align-items: flex-end; }
+        .ifz-msg-bubble {
+          padding: 12px 16px;
+          border-radius: 12px;
+          font-size: 15px;
           line-height: 1.6;
-          margin-bottom: 14px;
           white-space: pre-line;
         }
-        .cw-msg-bot {
-          background: #f1f5f9;
-          color: #0f172a;
+        .ifz-msg-bubble.bot {
+          background: var(--ifz-white);
+          border: 1px solid var(--ifz-border);
+          color: var(--ifz-text-dark);
           border-bottom-left-radius: 4px;
+          box-shadow: 0 2px 4px rgba(15, 13, 29, 0.02);
         }
-        .cw-msg-user {
-          background: #384BFF;
-          color: #ffffff;
-          margin-left: auto;
+        .ifz-msg-bubble.user {
+          background: var(--ifz-blue);
+          color: var(--ifz-white);
           border-bottom-right-radius: 4px;
         }
+        .ifz-msg-meta {
+          font-size: 12px;
+          color: var(--ifz-text-subtle);
+          padding: 0 4px;
+        }
 
-        /* Bottom Tab Navigation */
-        .cw-tab-bar {
-          height: 64px;
-          background: #ffffff;
-          border-top: 1px solid rgba(0,0,0,0.06);
+        /* Typing Indicator */
+        .ifz-typing {
+          padding: 16px;
+          display: flex;
+          gap: 4px;
+          align-items: center;
+        }
+        .ifz-dot {
+          width: 6px;
+          height: 6px;
+          background: var(--ifz-text-subtle);
+          border-radius: 50%;
+          animation: typing-bounce 1.4s infinite ease-in-out both;
+        }
+        .ifz-dot:nth-child(1) { animation-delay: -0.32s; }
+        .ifz-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing-bounce {
+          0%, 80%, 100% { transform: scale(0); }
+          40% { transform: scale(1); }
+        }
+
+        /* Quick Replies */
+        .ifz-quick-replies {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 8px;
+          margin-top: 8px;
+        }
+        .ifz-pill {
+          background: transparent;
+          color: var(--ifz-blue);
+          border: 1px solid var(--ifz-blue);
+          padding: 10px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: var(--font-primary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .ifz-pill:hover {
+          background: var(--ifz-blue);
+          color: var(--ifz-white);
+        }
+
+        /* Input Area */
+        .ifz-input-area {
+          padding: 16px 20px;
+          background: var(--ifz-white);
+          border-top: 1px solid var(--ifz-border);
           display: flex;
           align-items: center;
-          justify-content: space-around;
+          gap: 12px;
         }
-        .cw-tab-btn {
+        .ifz-input-field {
+          flex: 1;
+          border: none;
+          outline: none;
+          font-size: 15px;
+          font-family: var(--font-primary);
+          color: var(--ifz-text-dark);
+          background: transparent;
+        }
+        .ifz-input-field::placeholder { color: var(--ifz-text-subtle); }
+        .ifz-send-btn {
+          background: var(--ifz-blue);
+          color: var(--ifz-white);
+          border: none;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .ifz-send-btn:hover { background: var(--ifz-blue-hover); }
+        .ifz-send-btn:disabled { background: var(--ifz-border); cursor: not-allowed; }
+
+        /* Empty States */
+        .ifz-empty {
+          text-align: center;
+          padding: 60px 20px;
+          color: var(--ifz-text-muted);
+        }
+        .ifz-empty-icon {
+          margin: 0 auto 16px;
+          color: var(--ifz-border);
+        }
+        .ifz-btn-primary {
+          background: var(--ifz-blue);
+          color: var(--ifz-white);
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 14px;
+          margin-top: 24px;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .ifz-btn-primary:hover { background: var(--ifz-blue-hover); }
+
+        /* Bottom Tab Navigation */
+        .ifz-tabs {
+          display: flex;
+          border-top: 1px solid var(--ifz-border);
+          background: var(--ifz-white);
+          height: 64px;
+        }
+        .ifz-tab {
+          flex: 1;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 4px;
           background: none;
           border: none;
-          color: #64748b;
-          font-size: 11px;
-          font-weight: 600;
+          color: var(--ifz-text-subtle);
+          font-size: 12px;
+          font-weight: 500;
           cursor: pointer;
-          transition: color 0.15s;
+          transition: color 0.2s;
         }
-        .cw-tab-btn.active {
-          color: #384BFF;
+        .ifz-tab:hover { color: var(--ifz-text-muted); }
+        .ifz-tab.active { color: var(--ifz-blue); }
+
+        /* Collections Card */
+        .ifz-collection-card {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px;
+          background: var(--ifz-white);
+          border: 1px solid var(--ifz-border);
+          border-radius: 8px;
+          margin-bottom: 8px;
+          cursor: pointer;
+          transition: border-color 0.2s;
         }
-        .cw-tab-btn svg {
-          width: 20px;
-          height: 20px;
+        .ifz-collection-card:hover { border-color: var(--ifz-blue); }
+        .ifz-collection-info {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .ifz-collection-icon { color: var(--ifz-text-muted); }
+        .ifz-collection-title { font-size: 14px; font-weight: 500; color: var(--ifz-text-dark); }
+        .ifz-collection-count { font-size: 13px; color: var(--ifz-text-subtle); margin-top: 2px; }
+
+        @media (max-width: 480px) {
+          .ifz-card { right: 16px; left: 16px; width: auto; bottom: 88px; }
         }
       `}</style>
 
-      {/* Floating Trigger Button */}
-      <button
-        className="cw-floating-trigger"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close Chat" : "Open Chat"}
-      >
-        {isOpen ? (
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        ) : (
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-          </svg>
-        )}
+      {/* Floating Action Button */}
+      <button className="ifz-fab" onClick={handleOpen} style={{ display: isOpen ? 'none' : 'flex' }}>
+        <MessageCircle size={24} strokeWidth={2} />
+        {hasUnread && <span className="ifz-fab-badge" />}
       </button>
 
-      {/* Chat Widget Window */}
+      {/* Widget Window */}
       {isOpen && (
-        <div className="cw-popup-card">
+        <div className="ifz-card">
           {/* Header */}
-          <div className="cw-header">
+          <div className="ifz-header">
             {activeTab === 'chat' ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <button
-                  onClick={() => setActiveTab('home')}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#384BFF', padding: 2 }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
+              <div className="ifz-chat-header">
+                <button className="ifz-icon-btn" onClick={() => setActiveTab('home')}>
+                  <ArrowLeft size={18} strokeWidth={2} color="white" />
                 </button>
-                <div className="cw-avatar-pill">I</div>
+                <div className="ifz-avatar">A</div>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 14, color: '#0F0D1D' }}>Infatoz Support</div>
-                  <div style={{ fontSize: 11, color: '#10b981', fontWeight: 600 }}>● Online (Replies instantly)</div>
+                  <div className="ifz-brand" style={{ fontSize: '16px' }}>AI Agent</div>
+                  <div className="ifz-status">Online</div>
                 </div>
               </div>
             ) : (
-              <div className="cw-brand-block">
-                <span className="cw-brand-logo">infatoz</span>
-                <div className="cw-avatars-group">
-                  <div className="cw-avatar-pill">I</div>
-                  <div className="cw-avatar-pill" style={{ background: '#0022E6' }}>A</div>
-                  <div className="cw-avatar-pill" style={{ background: '#10b981' }}>S</div>
+              <div>
+                <div className="ifz-brand">Infatoz Support</div>
+                <div className="ifz-status">
+                  <span className="ifz-status-dot" /> Usually replies in minutes
                 </div>
               </div>
             )}
-            <button className="cw-close-btn" onClick={() => setIsOpen(false)} aria-label="Close">
-              ✕
+            <button className="ifz-icon-btn" onClick={() => setIsOpen(false)}>
+              <X size={20} strokeWidth={2} color="white" />
             </button>
           </div>
 
-          {/* Body Content */}
-          <div className="cw-body-scroll">
-
-            {/* TAB 1: HOME */}
+          {/* Body */}
+          <div className="ifz-body">
             {activeTab === 'home' && (
               <>
-                <div className="cw-greeting">
-                  <div className="cw-greeting-title">Hi there 👋<br />How can we help?</div>
-                </div>
+                <div className="ifz-greeting">Hi there 👋<br />How can we help?</div>
 
-                <div className="cw-action-card" onClick={() => setActiveTab('chat')}>
-                  <span className="cw-action-card-text">Send us a message</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#384BFF">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                  </svg>
-                </div>
-
-                <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 14, padding: 14, marginTop: 14 }}>
-                  <div className="cw-search-wrap">
-                    <input
-                      type="text"
-                      className="cw-search-input"
-                      placeholder="Search for help..."
-                      value={searchQuery}
-                      onChange={e => setSearchQuery(e.target.value)}
-                    />
-                    <svg className="cw-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                <div className="ifz-card-action" onClick={() => setActiveTab('chat')}>
+                  <div className="ifz-card-action-icon">
+                    <Send size={20} strokeWidth={2} />
                   </div>
-
-                  {filteredFaqs.slice(0, 4).map(f => (
-                    <div
-                      key={f.id}
-                      className="cw-faq-item"
-                      onClick={() => setSelectedFaq(selectedFaq === f.id ? null : f.id)}
-                    >
-                      <div>
-                        <div className="cw-faq-qtext">{f.q}</div>
-                        {selectedFaq === f.id && (
-                          <div style={{ fontSize: 13, color: '#64748b', marginTop: 8, lineHeight: 1.6 }}>
-                            {f.a}
-                          </div>
-                        )}
-                      </div>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#384BFF" strokeWidth="2.5">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  ))}
+                  <div>
+                    <div className="ifz-card-action-title">Send us a message</div>
+                    <div className="ifz-card-action-sub">We usually reply in a few minutes</div>
+                  </div>
+                  <ChevronRight size={18} color="var(--ifz-border)" style={{ marginLeft: 'auto' }} />
                 </div>
+
+                <div className="ifz-search-wrap">
+                  <Search size={16} className="ifz-search-icon" />
+                  <input
+                    type="text"
+                    className="ifz-search-input"
+                    placeholder="Search for help..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+
+                <div className="ifz-faq-section-title">Suggested Help</div>
+                {filteredFaqs.map((f) => (
+                  <div key={f.id} className="ifz-faq-item">
+                    <div className="ifz-faq-head" onClick={() => setSelectedFaq(selectedFaq === f.id ? null : f.id)}>
+                      {f.q}
+                      <ChevronDown size={16} className={`ifz-faq-chevron ${selectedFaq === f.id ? 'open' : ''}`} />
+                    </div>
+                    {selectedFaq === f.id && <div className="ifz-faq-answer">{f.a}</div>}
+                  </div>
+                ))}
               </>
             )}
 
-            {/* TAB 2: MESSAGES */}
             {activeTab === 'messages' && (
-              <div style={{ textAlign: 'center', paddingTop: 60, paddingBottom: 40 }}>
-                <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#f1f5f9', color: '#0F0D1D', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-                  </svg>
-                </div>
-                <div style={{ fontWeight: 800, fontSize: 18, color: '#0F0D1D', marginBottom: 6 }}>No recent conversations</div>
-                <div style={{ fontSize: 14, color: '#64748b', marginBottom: 24 }}>Your recent support messages will appear here.</div>
-
-                <button
-                  onClick={() => setActiveTab('chat')}
-                  style={{ background: '#384BFF', color: '#fff', border: 'none', padding: '12px 24px', borderRadius: 50, fontWeight: 700, fontSize: 14, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8 }}
-                >
-                  Send us a message
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#ffffff">
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                  </svg>
+              <div className="ifz-empty">
+                <MessageSquare size={48} className="ifz-empty-icon" strokeWidth={1} />
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--ifz-text-dark)' }}>No messages yet</h3>
+                <p style={{ fontSize: '14px', marginTop: '8px' }}>Once you start a conversation, you'll see it here.</p>
+                <button className="ifz-btn-primary" onClick={() => setActiveTab('chat')}>
+                  Start a conversation
                 </button>
               </div>
             )}
 
-            {/* TAB 3: HELP */}
             {activeTab === 'help' && (
-              <div>
-                <div className="cw-search-wrap">
+              <>
+                <div className="ifz-search-wrap">
+                  <Search size={16} className="ifz-search-icon" />
                   <input
                     type="text"
-                    className="cw-search-input"
-                    placeholder="Search for help..."
+                    className="ifz-search-input"
+                    placeholder="Search articles..."
                     value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <svg className="cw-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
                 </div>
-
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#0F0D1D', marginBottom: 12 }}>
-                  5 collections
-                </div>
-
-                {[
-                  { title: 'Services & Solutions', desc: 'Everything you need to know about our web, mobile, ERP, and AI software services.', count: '10 articles' },
-                  { title: 'Project Process & Sprints', desc: 'Our onboarding process, sprint timelines, agile workflows, and team allocation.', count: '6 articles' },
-                  { title: 'Custom AI & Automation', desc: 'Integrating LLMs, custom chatbots, process automation, and database pipelines.', count: '8 articles' },
-                  { title: 'Pricing & Fixed Estimates', desc: 'How we quote projects, milestone payment terms, and retainer support SLAs.', count: '4 articles' },
-                  { title: 'Company & Security', desc: 'NDAs, IP ownership, security compliance (SOC2/GDPR), and client testimonials.', count: '3 articles' },
-                ].map((col, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => setActiveTab('chat')}
-                    style={{
-                      background: '#fff',
-                      border: '1px solid #e2e8f0',
-                      borderRadius: 14,
-                      padding: '16px',
-                      marginBottom: 12,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.background = '#f4f6ff'}
-                    onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-                      <div style={{ fontWeight: 700, fontSize: 15, color: '#0F0D1D' }}>{col.title}</div>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#384BFF" strokeWidth="2.5">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
+                <div className="ifz-faq-section-title" style={{ marginTop: '24px' }}>Collections</div>
+                {collections.map((col, idx) => {
+                  const Icon = col.icon;
+                  return (
+                    <div key={idx} className="ifz-collection-card" onClick={() => setActiveTab('chat')}>
+                      <div className="ifz-collection-info">
+                        <Icon size={20} strokeWidth={1.5} className="ifz-collection-icon" />
+                        <div>
+                          <div className="ifz-collection-title">{col.title}</div>
+                          <div className="ifz-collection-count">{col.count}</div>
+                        </div>
+                      </div>
+                      <ChevronRight size={16} color="var(--ifz-text-subtle)" />
                     </div>
-                    <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.5, marginBottom: 8 }}>
-                      {col.desc}
-                    </div>
-                    <div style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>
-                      {col.count}
+                  );
+                })}
+              </>
+            )}
+
+            {activeTab === 'chat' && (
+              <div className="ifz-chat-container">
+                {messages.map((m) => (
+                  <div key={m.id} className={`ifz-msg-row ${m.sender}`}>
+                    <div className="ifz-msg-col">
+                      <div className={`ifz-msg-bubble ${m.sender}`}>{m.text}</div>
+                      <div className="ifz-msg-meta">{m.time}</div>
                     </div>
                   </div>
                 ))}
-              </div>
-            )}
 
-            {/* CHAT CONVERSATION SCREEN */}
-            {activeTab === 'chat' && (
-              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <div style={{ flex: 1 }}>
-                  {messages.map(m => (
-                    <div key={m.id} style={{ marginBottom: 16 }}>
-                      <div className={`cw-msg-bubble ${m.sender === 'user' ? 'cw-msg-user' : 'cw-msg-bot'}`}>
-                        {m.text}
+                {isTyping && (
+                  <div className="ifz-msg-row bot">
+                    <div className="ifz-msg-col">
+                      <div className="ifz-msg-bubble bot ifz-typing">
+                        <span className="ifz-dot" />
+                        <span className="ifz-dot" />
+                        <span className="ifz-dot" />
                       </div>
-                      {m.sender === 'bot' && (
-                        <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600, marginTop: 4, marginLeft: 4 }}>
-                          James • AI Agent • {m.time}
-                        </div>
-                      )}
                     </div>
-                  ))}
-
-                  {/* Interactive Quick Option Pills */}
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8, marginTop: 12, marginBottom: 16 }}>
-                    {[
-                      'How does Infatoz work?',
-                      'I need help with a custom project',
-                      'I have a pricing/quote question',
-                      'Something else',
-                    ].map((opt, i) => (
-                      <button
-                        key={i}
-                        onClick={() => handleSendMessage(opt)}
-                        style={{
-                          background: i === 0 ? '#384BFF' : '#ffffff',
-                          color: i === 0 ? '#ffffff' : '#384BFF',
-                          border: i === 0 ? 'none' : '1px solid #e2e8f0',
-                          padding: '10px 18px',
-                          borderRadius: 50,
-                          fontSize: 13,
-                          fontWeight: 700,
-                          cursor: 'pointer',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                          transition: 'all 0.2s',
-                        }}
-                      >
-                        {opt}
-                      </button>
-                    ))}
                   </div>
+                )}
 
-                  <div ref={messagesEndRef} />
+                <div className="ifz-quick-replies">
+                  {['I have a custom project', 'Pricing questions', 'Something else'].map((opt, i) => (
+                    <button key={i} className="ifz-pill" onClick={() => handleSendMessage(opt)}>
+                      {opt}
+                    </button>
+                  ))}
                 </div>
+                <div ref={messagesEndRef} />
               </div>
             )}
-
           </div>
 
-          {/* Chat Input Bar (only visible when in chat tab) */}
+          {/* Chat Input Bar */}
           {activeTab === 'chat' && (
-            <div style={{ padding: '10px 16px', background: '#ffffff', borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div className="ifz-input-area">
               <input
                 type="text"
-                placeholder="Ask us anything..."
+                className="ifz-input-field"
+                placeholder="Reply here..."
                 value={inputMsg}
-                onChange={e => setInputMsg(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleSendMessage()}
-                style={{ flex: 1, padding: '10px 14px', borderRadius: 50, border: '1px solid #cbd5e1', outline: 'none', fontSize: 14 }}
+                onChange={(e) => setInputMsg(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               />
               <button
+                className="ifz-send-btn"
                 onClick={() => handleSendMessage()}
-                style={{ background: '#384BFF', color: '#fff', border: 'none', width: 38, height: 38, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                disabled={!inputMsg.trim()}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                </svg>
+                <Send size={16} strokeWidth={2} />
               </button>
             </div>
           )}
 
-          {/* Bottom Tab Navigation Bar */}
-          <div className="cw-tab-bar">
-            <button
-              className={`cw-tab-btn ${activeTab === 'home' ? 'active' : ''}`}
-              onClick={() => setActiveTab('home')}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              </svg>
+          {/* Bottom Navigation */}
+          <div className="ifz-tabs">
+            <button className={`ifz-tab ${activeTab === 'home' ? 'active' : ''}`} onClick={() => setActiveTab('home')}>
+              <Home size={20} strokeWidth={activeTab === 'home' ? 2.5 : 2} />
               Home
             </button>
-
-            <button
-              className={`cw-tab-btn ${activeTab === 'messages' || activeTab === 'chat' ? 'active' : ''}`}
-              onClick={() => setActiveTab('messages')}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
+            <button className={`ifz-tab ${activeTab === 'messages' || activeTab === 'chat' ? 'active' : ''}`} onClick={() => setActiveTab('messages')}>
+              <MessageSquare size={20} strokeWidth={activeTab === 'messages' || activeTab === 'chat' ? 2.5 : 2} />
               Messages
             </button>
-
-            <button
-              className={`cw-tab-btn ${activeTab === 'help' ? 'active' : ''}`}
-              onClick={() => setActiveTab('help')}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-              </svg>
+            <button className={`ifz-tab ${activeTab === 'help' ? 'active' : ''}`} onClick={() => setActiveTab('help')}>
+              <HelpCircle size={20} strokeWidth={activeTab === 'help' ? 2.5 : 2} />
               Help
             </button>
           </div>
-
         </div>
       )}
     </>
