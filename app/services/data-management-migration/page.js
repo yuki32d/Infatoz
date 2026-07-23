@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function DataManagementPage() {
   return (
     <ServicePageTemplate
+      slug="data-management-migration"
       heroEyebrow="DATA MANAGEMENT & MIGRATION"
       heroTitle="Your Data. Secure. Accurate."
       heroHighlight="Always Available."

@@ -1,0 +1,81 @@
+/**
+ * Initial content structure for Sanity.io seeding
+ * Run this script or copy data into Sanity Studio at /studio
+ */
+
+export const initialServicesData = [
+  {
+    _type: 'service',
+    title: 'Web Design & CMS Development Services',
+    slug: { _type: 'slug', current: 'web-design-cms' },
+    heroEyebrow: 'WEB DESIGN & CMS DEVELOPMENT',
+    heroTitle: 'Build Stunning Websites That',
+    heroHighlight: 'Convert & Scale',
+    heroSub: 'From pixel-perfect corporate websites to powerful CMS-driven platforms — we design and develop digital experiences that captivate visitors and grow your business.',
+    badgeNumber: '100%',
+    badgeLabel: 'Pixel Perfect & Responsive',
+    stats: [
+      { num: '250+', label: 'Websites Launched' },
+      { num: '99.9%', label: 'Uptime & Reliability' },
+      { num: '3.5×', label: 'Avg. Conversion Lift' },
+      { num: '48h', label: 'Rapid Prototype Turnaround' },
+    ],
+    overviewTitle: 'Websites That Work as Hard as',
+    overviewHighlight: 'Your Business Does',
+    overviewDesc: 'We don’t just build pretty websites. We craft conversion-focused digital platforms engineered for speed, search visibility, and seamless content management.',
+    overviewList: [
+      'Custom WordPress, Webflow, and Headless Next.js CMS development',
+      'Mobile-first responsive design tailored to your brand identity',
+      'SEO-optimized architecture for top Google search rankings',
+      'Blazing-fast page load speeds under 1.5 seconds',
+      'Easy-to-use admin panel for non-technical team members',
+      'Enterprise-grade security and SSL encryption',
+    ],
+    processTitle: 'Our Web Development Process',
+    processSteps: [
+      { title: 'Discovery & Strategy', desc: 'We analyze your brand, goals, audience, and competitors to map out a winning web blueprint.' },
+      { title: 'UI/UX Wireframing', desc: 'Crafting interactive prototypes and visual mockups designed for maximum user engagement.' },
+      { title: 'Development & CMS', desc: 'Building clean, standards-compliant code integrated with your preferred CMS.' },
+      { title: 'QA & Optimization', desc: 'Rigorous cross-browser, mobile performance, accessibility, and speed testing.' },
+      { title: 'Launch & Support', desc: 'Smooth deployment with zero downtime, plus ongoing security updates and maintenance.' },
+    ],
+    techTitle: 'Technologies & CMS Platforms',
+  },
+  {
+    _type: 'service',
+    title: 'Custom Web Application Development',
+    slug: { _type: 'slug', current: 'custom-web-applications' },
+    heroEyebrow: 'CUSTOM WEB APPLICATION DEVELOPMENT',
+    heroTitle: 'Enterprise-Grade Web Software',
+    heroHighlight: 'Tailored to Your Workflow',
+    heroSub: 'We build high-performance, secure, and scalable web applications — from SaaS platforms and customer portals to complex enterprise systems — engineered to solve your toughest business challenges.',
+    badgeNumber: '99.9%',
+    badgeLabel: 'Uptime Guarantee',
+    stats: [
+      { num: '150+', label: 'Web Apps Built' },
+      { num: '99.9%', label: 'Service Uptime' },
+      { num: '500k+', label: 'Active End Users' },
+      { num: '100%', label: 'Custom Code Ownership' },
+    ],
+    overviewTitle: 'Web Applications Engineered for',
+    overviewHighlight: 'Scale & Performance',
+    overviewDesc: 'Off-the-shelf software often forces you to compromise your business processes. Our custom web application engineering team designs bespoke software around your exact workflow.',
+    overviewList: [
+      'Full-stack development using React, Next.js, Node.js, and Python',
+      'Scalable microservices and cloud-native architecture',
+      'Custom customer portals, dashboards, and internal management tools',
+      'RESTful & GraphQL API integration with third-party software',
+      'Role-based access control (RBAC) and enterprise security',
+      'Continuous integration and automated testing pipelines',
+    ],
+    processTitle: 'How We Build Web Applications',
+    processSteps: [
+      { title: 'Requirements & Architecture', desc: 'We map user journeys, system architecture, database models, and API integrations.' },
+      { title: 'UX/UI & Prototyping', desc: 'Designing intuitive dashboards and user interfaces focused on productivity.' },
+      { title: 'Agile Development', desc: 'Iterative sprint releases with transparent progress reporting and continuous demo builds.' },
+      { title: 'Security & QA Testing', desc: 'Automated testing, penetration testing, and load testing to ensure stability.' },
+      { title: 'Deployment & Scaling', desc: 'CI/CD deployment to AWS/Vercel with 24/7 monitoring and performance optimization.' },
+    ],
+    techTitle: 'Frameworks & Cloud Stack',
+  },
+];

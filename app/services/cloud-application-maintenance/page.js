@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function CloudPage() {
   return (
     <ServicePageTemplate
+      slug="cloud-application-maintenance"
       heroEyebrow="CLOUD APPLICATION DEVELOPMENT & MAINTENANCE"
       heroTitle="Cloud-Native Applications Built"
       heroHighlight="for Reliability & Scale"

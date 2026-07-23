@@ -417,7 +417,11 @@ function FaqItem({ q, a }) {
 /* ──────────────────────────────────────────────────────────
    ServicePageTemplate — the single shared component
 ─────────────────────────────────────────────────────────── */
+import { client } from '../../sanity/lib/client';
+import { serviceBySlugQuery } from '../../sanity/lib/queries';
+
 export default function ServicePageTemplate({
+  slug,
   /* hero */
   heroEyebrow, heroTitle, heroHighlight, heroSub, heroImg1, heroImg2,
   badgeNumber, badgeLabel,
@@ -436,6 +440,44 @@ export default function ServicePageTemplate({
   /* related */
   related,
 }) {
+  const [sanityData, setSanityData] = useState(null);
+
+  // ── Fetch dynamic Sanity CMS data if available for this slug ──
+  useEffect(() => {
+    if (!slug) return;
+    async function fetchSanityContent() {
+      try {
+        const data = await client.fetch(serviceBySlugQuery, { slug });
+        if (data && data.title) {
+          setSanityData(data);
+        }
+      } catch (err) {
+        console.log('Sanity fetch fallback to local props:', err);
+      }
+    }
+    fetchSanityContent();
+  }, [slug]);
+
+  // Use Sanity data if present, otherwise fallback to local hardcoded props
+  const finalHeroEyebrow = sanityData?.heroEyebrow || heroEyebrow;
+  const finalHeroTitle = sanityData?.heroTitle || heroTitle;
+  const finalHeroHighlight = sanityData?.heroHighlight || heroHighlight;
+  const finalHeroSub = sanityData?.heroSub || heroSub;
+  const finalHeroImg1 = sanityData?.heroImg1 || heroImg1;
+  const finalHeroImg2 = sanityData?.heroImg2 || heroImg2;
+  const finalBadgeNumber = sanityData?.badgeNumber || badgeNumber;
+  const finalBadgeLabel = sanityData?.badgeLabel || badgeLabel;
+  const finalStats = sanityData?.stats || stats;
+  const finalOverviewTitle = sanityData?.overviewTitle || overviewTitle;
+  const finalOverviewHighlight = sanityData?.overviewHighlight || overviewHighlight;
+  const finalOverviewDesc = sanityData?.overviewDesc || overviewDesc;
+  const finalOverviewList = sanityData?.overviewList || overviewList;
+  const finalFeatures = sanityData?.features || features;
+  const finalProcessTitle = sanityData?.processTitle || processTitle;
+  const finalProcessSteps = sanityData?.processSteps || processSteps;
+  const finalTechTitle = sanityData?.techTitle || techTitle;
+  const finalFaqs = sanityData?.faqs || faqs;
+
   // ── Initialize WOW.js (for footer animations) + scroll reveal ──
   useEffect(() => {
     // 1. WOW.js for footer fadeInUp classes
@@ -478,7 +520,7 @@ export default function ServicePageTemplate({
         {/* Relevant background image */}
         <img
           className="sp-hero-bg-img"
-          src={heroImg1}
+          src={finalHeroImg1}
           alt=""
           aria-hidden="true"
         />
@@ -489,10 +531,10 @@ export default function ServicePageTemplate({
 
         <div className="sp-hero-inner sp-container">
           <div className="sp-hero-eyebrow">
-            {heroEyebrow}
+            {finalHeroEyebrow}
           </div>
-          <h1>{heroTitle} {heroHighlight && <span>{heroHighlight}</span>}</h1>
-          <p className="sp-hero-sub">{heroSub}</p>
+          <h1>{finalHeroTitle} {finalHeroHighlight && <span>{finalHeroHighlight}</span>}</h1>
+          <p className="sp-hero-sub">{finalHeroSub}</p>
           <div className="sp-hero-btns">
             <a href="/contact" className="sp-btn">Get a Free Quote <span style={{display:'inline-flex',width:18,height:18}}>{Icon.arrowRight}</span></a>
             <a href="/about" className="sp-btn sp-btn-light">Learn More About Us</a>
@@ -500,7 +542,7 @@ export default function ServicePageTemplate({
           <div className="sp-breadcrumb">
             <a href="/">Home</a><span>›</span>
             <a href="/services">Services</a><span>›</span>
-            {heroTitle}{heroHighlight && ' ' + heroHighlight}
+            {finalHeroTitle}{finalHeroHighlight && ' ' + finalHeroHighlight}
           </div>
         </div>
       </section>
@@ -508,7 +550,7 @@ export default function ServicePageTemplate({
       {/* ── STATS ── */}
       <section className="sp-stats">
         <div className="sp-stats-grid sp-container" style={{padding:0}}>
-          {stats.map((s, i) => (
+          {finalStats?.map((s, i) => (
             <div key={i} className={`sp-stat-item sr-up sr-d${i+1}`}>
               <div className="sp-stat-num">{s.num}</div>
               <div className="sp-stat-label">{s.label}</div>
@@ -523,22 +565,22 @@ export default function ServicePageTemplate({
           <div className="sp-overview-grid">
             {/* Image stack */}
             <div className="sp-img-stack sr-left">
-              <img className="sp-img-main" src={heroImg1} alt={heroTitle} />
-              <img className="sp-img-overlay" src={heroImg2} alt="Service detail" />
+              <img className="sp-img-main" src={finalHeroImg1} alt={finalHeroTitle} />
+              <img className="sp-img-overlay" src={finalHeroImg2} alt="Service detail" />
               <div className="sp-badge">
                 <div className="sp-badge-icon" style={{color:'#fff'}}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
-                <div><strong>{badgeNumber}</strong><small>{badgeLabel}</small></div>
+                <div><strong>{finalBadgeNumber}</strong><small>{finalBadgeLabel}</small></div>
               </div>
             </div>
             {/* Text */}
             <div className="sr-right">
               <span className="sp-eyebrow">{overviewEyebrow}</span>
-              <h2 className="sp-section-title">{overviewTitle} <span>{overviewHighlight}</span></h2>
-              <p className="sp-section-desc">{overviewDesc}</p>
+              <h2 className="sp-section-title">{finalOverviewTitle} <span>{finalOverviewHighlight}</span></h2>
+              <p className="sp-section-desc">{finalOverviewDesc}</p>
               <ul className="sp-overview-list">
-                {overviewList.map((item, i) => (
+                {finalOverviewList?.map((item, i) => (
                   <li key={i}>
                     <span className="sp-check" style={{display:'inline-flex',width:20,height:20}}>{Icon.check}</span>
                     {item}
@@ -557,11 +599,11 @@ export default function ServicePageTemplate({
           <div className="sp-features-header sr-up">
             <span className="sp-eyebrow">KEY FEATURES</span>
             <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>
-              What Sets Our <span>{features[0] ? features[0].sectionHighlight || 'Services' : 'Services'}</span> Apart
+              What Sets Our <span>{finalFeatures?.[0] ? finalFeatures[0].sectionHighlight || 'Services' : 'Services'}</span> Apart
             </h2>
           </div>
           <div className="sp-features-grid">
-            {features.map((f, i) => (
+            {finalFeatures?.map((f, i) => (
               <div key={i} className={`sp-feat-card sr-up sr-d${(i%3)+1}`}>
                 <div className="sp-feat-icon-wrap">
                   <span style={{display:'inline-flex',width:28,height:28}}>{Icon[f.icon] || Icon.star}</span>
@@ -579,10 +621,10 @@ export default function ServicePageTemplate({
         <div className="sp-container">
           <div className="sp-process-header sr-up">
             <span className="sp-eyebrow">OUR PROCESS</span>
-            <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{processTitle}</h2>
+            <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{finalProcessTitle}</h2>
           </div>
           <div className="sp-steps">
-            {processSteps.map((s, i) => (
+            {finalProcessSteps?.map((s, i) => (
               <div key={i} className={`sp-step sr-zoom sr-d${i+1}`}>
                 <div className="sp-step-num">{String(i + 1).padStart(2, '0')}</div>
                 <h4>{s.title}</h4>
@@ -598,10 +640,10 @@ export default function ServicePageTemplate({
         <div className="sp-container">
           <div className="sp-tech-header sr-up">
             <span className="sp-eyebrow">TECHNOLOGIES</span>
-            <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{techTitle}</h2>
+            <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{finalTechTitle}</h2>
           </div>
           <div className="sp-tech-pills sr-up sr-d2">
-            {techStack.map((t, i) => (
+            {techStack?.map((t, i) => (
               <div key={i} className="sp-tech-pill">
                 {t.logo && <img src={t.logo} alt={t.name} />}
                 {t.name}
@@ -619,7 +661,7 @@ export default function ServicePageTemplate({
             <h2 className="sp-section-title" style={{textAlign:'center',margin:'0 auto'}}>{faqTitle}</h2>
           </div>
           <div className="sp-faq-list sr-up sr-d2">
-            {faqs.map((f, i) => <FaqItem key={i} q={f.q} a={f.a} />)}
+            {finalFaqs?.map((f, i) => <FaqItem key={i} q={f.q} a={f.a} />)}
           </div>
         </div>
       </section>

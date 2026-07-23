@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function ERPPage() {
   return (
     <ServicePageTemplate
+      slug="erp-business-automation"
       heroEyebrow="ERP SOFTWARE & BUSINESS AUTOMATION"
       heroTitle="Automate Your Business."
       heroHighlight="Eliminate Inefficiency."

@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function WebDesignCMSPage() {
   return (
     <ServicePageTemplate
+      slug="web-design-cms"
       heroEyebrow="WEB DESIGN & CMS DEVELOPMENT"
       heroTitle="Build Stunning Websites That"
       heroHighlight="Convert & Scale"

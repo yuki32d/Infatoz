@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function DigitalMarketingPage() {
   return (
     <ServicePageTemplate
+      slug="digital-marketing"
       heroEyebrow="DIGITAL MARKETING & GROWTH SERVICES"
       heroTitle="Grow Your Business with"
       heroHighlight="Measurable Digital Marketing"

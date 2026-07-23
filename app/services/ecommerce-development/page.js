@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function EcommercePage() {
   return (
     <ServicePageTemplate
+      slug="ecommerce-development"
       heroEyebrow="E-COMMERCE DEVELOPMENT"
       heroTitle="Online Stores Built to"
       heroHighlight="Sell More, Effortlessly"

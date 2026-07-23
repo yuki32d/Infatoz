@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function UIUXPage() {
   return (
     <ServicePageTemplate
+      slug="ui-ux-design-branding"
       heroEyebrow="UI/UX DESIGN & BRANDING"
       heroTitle="Design That Captivates."
       heroHighlight="Brands That Endure."

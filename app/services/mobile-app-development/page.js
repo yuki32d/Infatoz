@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function MobileAppPage() {
   return (
     <ServicePageTemplate
+      slug="mobile-app-development"
       heroEyebrow="MOBILE APP DEVELOPMENT"
       heroTitle="Mobile Apps That Users"
       heroHighlight="Love & Return To"

@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function CustomWebAppPage() {
   return (
     <ServicePageTemplate
+      slug="custom-web-applications"
       heroEyebrow="CUSTOM WEB APPLICATION DEVELOPMENT"
       heroTitle="Purpose-Built Web Applications That"
       heroHighlight="Solve Real Problems"

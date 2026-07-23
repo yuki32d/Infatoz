@@ -5,6 +5,7 @@ const ServicePageTemplate = dynamic(() => import('../../services/ServicePageTemp
 export default function AIPage() {
   return (
     <ServicePageTemplate
+      slug="ai-application-automation"
       heroEyebrow="AI APPLICATION DEVELOPMENT & AUTOMATION"
       heroTitle="Intelligent Software Powered by"
       heroHighlight="Real AI, Real Results"
