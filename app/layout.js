@@ -1,6 +1,7 @@
 // Generated layout for Infatoz Next.js App
 import Script from "next/script";
 import "./globals.css";
+import ChatWidget from "./components/ChatWidget";
 
 export const metadata = {
   title: "Infatoz – IT Solution & Technology WordPress Theme",
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
         <div id="page" className="site">
           {children}
         </div>
+        <ChatWidget />
       </body>
     </html>
   );
