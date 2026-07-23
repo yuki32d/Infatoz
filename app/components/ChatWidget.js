@@ -474,12 +474,11 @@ export default function ChatWidget() {
             {/* TAB 3: HELP */}
             {activeTab === 'help' && (
               <div>
-                <div style={{ fontWeight: 800, fontSize: 18, color: '#0F0D1D', marginBottom: 14 }}>Help & Documentation</div>
                 <div className="cw-search-wrap">
                   <input
                     type="text"
                     className="cw-search-input"
-                    placeholder="Search for articles..."
+                    placeholder="Search for help..."
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                   />
@@ -489,21 +488,44 @@ export default function ChatWidget() {
                   </svg>
                 </div>
 
-                {filteredFaqs.map(f => (
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#0F0D1D', marginBottom: 12 }}>
+                  5 collections
+                </div>
+
+                {[
+                  { title: 'Services & Solutions', desc: 'Everything you need to know about our web, mobile, ERP, and AI software services.', count: '10 articles' },
+                  { title: 'Project Process & Sprints', desc: 'Our onboarding process, sprint timelines, agile workflows, and team allocation.', count: '6 articles' },
+                  { title: 'Custom AI & Automation', desc: 'Integrating LLMs, custom chatbots, process automation, and database pipelines.', count: '8 articles' },
+                  { title: 'Pricing & Fixed Estimates', desc: 'How we quote projects, milestone payment terms, and retainer support SLAs.', count: '4 articles' },
+                  { title: 'Company & Security', desc: 'NDAs, IP ownership, security compliance (SOC2/GDPR), and client testimonials.', count: '3 articles' },
+                ].map((col, idx) => (
                   <div
-                    key={f.id}
-                    style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 14, marginBottom: 10, cursor: 'pointer' }}
-                    onClick={() => setSelectedFaq(selectedFaq === f.id ? null : f.id)}
+                    key={idx}
+                    onClick={() => setActiveTab('chat')}
+                    style={{
+                      background: '#fff',
+                      border: '1px solid #e2e8f0',
+                      borderRadius: 14,
+                      padding: '16px',
+                      marginBottom: 12,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = '#f4f6ff'}
+                    onMouseLeave={e => e.currentTarget.style.background = '#fff'}
                   >
-                    <div style={{ fontWeight: 700, fontSize: 14, color: '#0F0D1D', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      {f.q}
-                      <span style={{ color: '#384BFF', fontWeight: 800 }}>{selectedFaq === f.id ? '−' : '+'}</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                      <div style={{ fontWeight: 700, fontSize: 15, color: '#0F0D1D' }}>{col.title}</div>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#384BFF" strokeWidth="2.5">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
                     </div>
-                    {selectedFaq === f.id && (
-                      <div style={{ fontSize: 13, color: '#64748b', marginTop: 8, lineHeight: 1.6 }}>
-                        {f.a}
-                      </div>
-                    )}
+                    <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.5, marginBottom: 8 }}>
+                      {col.desc}
+                    </div>
+                    <div style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>
+                      {col.count}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -514,10 +536,47 @@ export default function ChatWidget() {
               <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <div style={{ flex: 1 }}>
                   {messages.map(m => (
-                    <div key={m.id} className={`cw-msg-bubble ${m.sender === 'user' ? 'cw-msg-user' : 'cw-msg-bot'}`}>
-                      {m.text}
+                    <div key={m.id} style={{ marginBottom: 16 }}>
+                      <div className={`cw-msg-bubble ${m.sender === 'user' ? 'cw-msg-user' : 'cw-msg-bot'}`}>
+                        {m.text}
+                      </div>
+                      {m.sender === 'bot' && (
+                        <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600, marginTop: 4, marginLeft: 4 }}>
+                          James • AI Agent • {m.time}
+                        </div>
+                      )}
                     </div>
                   ))}
+
+                  {/* Interactive Quick Option Pills */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8, marginTop: 12, marginBottom: 16 }}>
+                    {[
+                      'How does Infatoz work?',
+                      'I need help with a custom project',
+                      'I have a pricing/quote question',
+                      'Something else',
+                    ].map((opt, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleSendMessage(opt)}
+                        style={{
+                          background: i === 0 ? '#384BFF' : '#ffffff',
+                          color: i === 0 ? '#ffffff' : '#384BFF',
+                          border: i === 0 ? 'none' : '1px solid #e2e8f0',
+                          padding: '10px 18px',
+                          borderRadius: 50,
+                          fontSize: 13,
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                          transition: 'all 0.2s',
+                        }}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+
                   <div ref={messagesEndRef} />
                 </div>
               </div>
