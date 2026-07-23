@@ -1,10 +1,25 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { client } from '../sanity/lib/client';
+import { landingHeroQuery } from '../sanity/lib/queries';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 export default function HomeContent() {
+  const [heroData, setHeroData] = useState(null);
+
+  useEffect(() => {
+    async function fetchHero() {
+      try {
+        const data = await client.fetch(landingHeroQuery);
+        if (data) setHeroData(data);
+      } catch (err) {
+        console.log('Sanity hero fetch fallback:', err);
+      }
+    }
+    fetchHero();
+  }, []);
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -233,26 +248,27 @@ export default function HomeContent() {
                                     <div className="row g-4 align-items-center">
                                         <div className="col-lg-8">
                                             <div className="hero-content">
-                                                <div className="hero-subtitle">
-                                                    <svg width="40" height="16" viewBox="0 0 40 16" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <rect x="0.5" y="0.5" width="25.6667" height="15" rx="7.5"
-                                                            stroke="#384BFF" />
-                                                        <rect x="13.3334" width="26.6667" height="16" rx="8"
-                                                            fill="#384BFF" />
-                                                    </svg>
-                                                    <h6 className="wow fadeInUp" data-wow-delay=".2s">Best it Solution
-                                                        Provider</h6>
-                                                </div>
-                                                <h1 className="wow fadeInUp" data-wow-delay=".4s">
-                                                    Excellent It Services for Your Success </h1>
-                                                 <p className="wow fadeInUp" data-wow-delay=".6s">
-                                                     We provide specialized IT solutions and consulting services to help your business <br /> streamline operations, enhance security, and drive digital innovation. </p>
-                                                <div className="hero-button">
-                                                    <a href="/contact" className="theme-btn wow fadeInUp"
-                                                        data-wow-delay=".8s">
-                                                        Explore More <i className="fa-solid fa-arrow-right-long"></i>
-                                                    </a>
+                                                 <div className="hero-subtitle">
+                                                     <svg width="40" height="16" viewBox="0 0 40 16" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                         <rect x="0.5" y="0.5" width="25.6667" height="15" rx="7.5"
+                                                             stroke="#384BFF" />
+                                                         <rect x="13.3334" width="26.6667" height="16" rx="8"
+                                                             fill="#384BFF" />
+                                                     </svg>
+                                                     <h6 className="wow fadeInUp" data-wow-delay=".2s">{heroData?.eyebrow || "Best IT Solution Provider"}</h6>
+                                                 </div>
+                                                 <h1 className="wow fadeInUp" data-wow-delay=".4s">
+                                                     {heroData?.headline || "Excellent IT Services for Your Success"} {heroData?.highlight && <span>{heroData.highlight}</span>}
+                                                 </h1>
+                                                  <p className="wow fadeInUp" data-wow-delay=".6s">
+                                                      {heroData?.subtext || "We provide specialized IT solutions and consulting services to help your business streamline operations, enhance security, and drive digital innovation."}
+                                                  </p>
+                                                 <div className="hero-button">
+                                                     <a href={heroData?.ctaLink || "/contact"} className="theme-btn wow fadeInUp"
+                                                         data-wow-delay=".8s">
+                                                         {heroData?.ctaText || "Explore More"} <i className="fa-solid fa-arrow-right-long"></i>
+                                                     </a>
                                                     <span className="button-text wow fadeInUp" data-wow-delay=".9s">
                                                         <a href="#"
                                                             className="video-btn ripple">
